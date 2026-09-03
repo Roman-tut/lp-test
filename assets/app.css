@@ -905,6 +905,7 @@ hr {
   background: #0b0b0b;
   border-color: #2c2c2c;
   transform: translateY(-12px);
+  margin-top: 5px;
 }
 
 .form__title,
