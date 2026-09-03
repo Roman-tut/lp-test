@@ -522,7 +522,9 @@ hr {
     margin: 0.2rem 0;
   }
   .main__image--otp {
-    display: none;
+    max-width: 400px;
+    max-height: 8vh;
+    margin-bottom: 8px;
   }
 }
 
