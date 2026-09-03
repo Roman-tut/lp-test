@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 370" role="img" aria-labelledby="title desc">
+  <title id="title">Устройство под защитой</title>
+  <desc id="desc">Смартфон с галочкой на фоне концентрических линий локатора</desc>
+  <g fill="none" fill-rule="evenodd">
+    <g stroke="#555555">
+      <circle cx="300" cy="185" r="145" stroke-width="4" />
+      <circle cx="300" cy="185" r="114" stroke-width="4" />
+      <circle cx="300" cy="185" r="84" stroke-width="3" />
+    </g>
+
+    <g fill="#F4F4F4">
+      <circle cx="300" cy="40" r="6" />
+      <circle cx="445" cy="185" r="6" />
+      <circle cx="300" cy="330" r="6" />
+      <circle cx="155" cy="185" r="6" />
+    </g>
+
+    <rect
+      x="226"
+      y="35"
+      width="148"
+      height="300"
+      rx="30"
+      fill="#141414"
+      stroke="#F4F4F4"
+      stroke-width="9"
+    />
+    <path d="M281 63h38" stroke="#555555" stroke-linecap="round" stroke-width="7" />
+    <circle cx="300" cy="306" r="8" fill="#555555" />
+
+    <path
+      d="m263 185 25 25 51-57"
+      stroke="#F4F4F4"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="15"
+    />
+  </g>
+</svg>

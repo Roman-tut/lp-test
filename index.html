@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Касперский Стандарт Мобайл</title>
+    <link rel="stylesheet" href="./assets/app.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/v-mask/dist/v-mask.min.js"></script>
+  </head>
+  <body>
+    <div id="app" v-cloak>
+      <div class="wrapper">
+        <header class="header">
+          <div class="container header__container">
+            <div class="header__kaspersky">
+              <img src="assets/image/kaspersky-logo.svg" alt="Kaspersky" />
+            </div>
+            <div class="header__danger">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M15.686 15A14.5 14.5 0 0 1 12 22a14.5 14.5 0 0 1 0-20 10 10 0 1 0 9.542 13"
+                />
+                <path d="M2 12h8.5" />
+                <path d="M20 6V4a2 2 0 1 0-4 0v2" />
+                <rect width="8" height="5" x="14" y="6" rx="1" />
+              </svg>
+              18+
+            </div>
+          </div>
+        </header>
+
+        <main class="main">
+          <div class="bg">
+            <div class="container">
+              <p class="subtitle">Касперский Стандарт Мобайл</p>
+              <p class="service-description">Защита устройства</p>
+              <hr />
+              <div v-if="isAoc">
+                <div v-if="!passwordViewVisibility" class="step-one">
+                  <img src="assets/image/kaspersky-img.png" alt="Kaspersky" class="main__image" />
+
+                  <button type="button" class="main__link" @click="sendOTP">Подключить</button>
+                  <div class="subscription-price">Стоимость: 30 руб./день со счета Билайн</div>
+                </div>
+
+                <div v-else class="otp-step">
+                  <img
+                    src="assets/image/kaspersky-img.png"
+                    alt="Kaspersky"
+                    class="main__image main__image--otp"
+                  />
+                  <div class="form">
+                    <p class="form__title">Введите код из SMS</p>
+                    <p class="form__hint">Код подтверждает подключение сервиса.</p>
+                    <label class="input-label" for="sms">SMS-код</label>
+                    <input
+                      key="password"
+                      type="text"
+                      name="otp"
+                      class="input"
+                      v-model="otpCode"
+                      inputmode="numeric"
+                      pattern="[0-9]*"
+                      autocomplete="one-time-code"
+                      id="sms"
+                      ref="sms"
+                      :class="{'input--error': errorCode}"
+                      placeholder="0000"
+                      minlength="4"
+                      maxlength="4"
+                      required
+                    />
+                    <button type="button" class="send-link" @click="resendOTPCode">
+                      <span v-if="!resendOTP">Код не пришел</span>
+                      <span v-else>Отправить повторно</span>
+                    </button>
+                    <div class="notice" v-if="resendOTP && !errorCode">Новый код отправлен</div>
+                    <div class="error-container" v-if="errorCode" v-text="accessSectionError"></div>
+                  </div>
+                  <button
+                    type="button"
+                    class="btn--confirm"
+                    :class="{'disabled': !submitBtnEnabled}"
+                    @click="submitPassword"
+                  >
+                    Подключить
+                  </button>
+                  <div class="subscription-price">Стоимость: 30 руб./день со счета Билайн</div>
+                </div>
+              </div>
+
+              <div v-else>
+                <div v-if="!ageConfirm" class="step-one">
+                  <button
+                    type="button"
+                    class="main__link--secondary"
+                    :class="{'disabled': !submitBtnEnabled}"
+                    @click="onConfirmAge"
+                  >
+                    Мне уже есть 18 лет
+                  </button>
+                  <div class="subscription-price">Стоимость: 149 руб./мес., со счета билайн</div>
+                </div>
+                <div v-else class="step-one">
+                  <button
+                    type="button"
+                    class="main__link--secondary"
+                    :class="{'disabled': !submitBtnEnabled}"
+                    @click="finalize"
+                  >
+                    Подключить
+                  </button>
+                  <div class="subscription-price">Стоимость: 149 руб./мес., со счета билайн</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+
+        <footer class="footer">
+          <div class="container footer__container">
+            <p class="footer__item">Провайдер: ООО «Аффимоб»</p>
+            <p class="footer__item">8-800-333-01-90, support@affimob.com</p>
+            <p class="footer__item">
+              Списание средств осуществляется с основного или контентного счета при его наличии.
+            </p>
+            <p class="footer__item">
+              <a href="https://kaspersky.affimob.com/eula" target="_blank"
+                >Пользовательское соглашение</a
+              >
+            </p>
+          </div>
+        </footer>
+
+        <form id="finalize" style="display: none" action="/route" method="post">
+          <input type="hidden" name="_token" :value="csrfToken" />
+          <input type="hidden" name="promoter_id" :value="promoterId" />
+          <input type="hidden" name="result" value="subscribed" />
+        </form>
+      </div>
+    </div>
+
+    <script>
+      var csrfToken = 'token';
+      var promolink = 'promolink';
+      var promoterId = 'id';
+      var isGirlLanding = false;
+      var isAoc = true;
+      var msisdn = 79999999999;
+    </script>
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>
