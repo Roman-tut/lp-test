@@ -174,8 +174,9 @@ body {
 
 .footer__container a {
   color: inherit;
-  text-decoration-line: underline;
+  text-decoration: underline;
 }
+
 .footer__container p {
   text-decoration-line: none;
 }
@@ -811,11 +812,6 @@ hr {
 .footer__item {
   margin: 2px 0;
   text-decoration: none;
-}
-
-.footer__container a {
-  color: inherit;
-  text-decoration: underline;
 }
 
 [v-cloak] {
