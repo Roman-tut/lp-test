@@ -807,7 +807,7 @@ hr {
 
 .footer__item {
   margin: 2px 0;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 .footer__container a {
