@@ -172,9 +172,12 @@ body {
   }
 }
 
-.footer__container p a {
+.footer__container a {
   color: inherit;
   text-decoration-line: underline;
+}
+.footer__container p {
+  text-decoration-line: none;
 }
 
 .main {
