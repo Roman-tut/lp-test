@@ -7,65 +7,49 @@
       content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1"
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <meta name="format-detection" content="telephone=no" />
     <title>Касперский Стандарт Мобайл</title>
-    <link rel="stylesheet" href="./assets/app.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles/app.css" />
     <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
-    <script src="https://cdn.jsdelivr.net/npm/v-mask/dist/v-mask.min.js"></script>
   </head>
   <body>
     <div id="app" v-cloak>
       <div class="wrapper">
         <header class="header">
-          <div class="container header__container">
-            <div class="header__kaspersky">
-              <img src="assets/image/kaspersky-logo.svg" alt="Kaspersky" />
-            </div>
-            <div class="header__danger">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path
-                  d="M15.686 15A14.5 14.5 0 0 1 12 22a14.5 14.5 0 0 1 0-20 10 10 0 1 0 9.542 13"
-                />
-                <path d="M2 12h8.5" />
-                <path d="M20 6V4a2 2 0 1 0-4 0v2" />
-                <rect width="8" height="5" x="14" y="6" rx="1" />
-              </svg>
-              18+
-            </div>
-          </div>
+          <img src="assets/image/kaspersky-logo.svg" class="logo" alt="Kaspersky" />
+          <div class="age">18+</div>
         </header>
 
-        <main class="main">
-          <div class="bg">
-            <div class="container">
-              <p class="subtitle">Касперский Стандарт Мобайл</p>
-              <p class="service-description">Защита устройства</p>
-              <hr />
-              <div v-if="isAoc">
-                <div v-if="!passwordViewVisibility" class="step-one">
-                  <img src="assets/image/kaspersky-img.png" alt="Kaspersky" class="main__image" />
+        <main class="main" v-if="subscribeViewVisibility">
+          <section class="hero">
+            <p class="eyebrow">
+              Поиск слабых мест в настройках, предупреждает о небезопасных настройках, которыми
+              могут воспользоваться хакеры.
+            </p>
+            <h1>Касперский Стандарт Мобайл</h1>
 
-                  <button type="button" class="main__link" @click="sendOTP">Подключить</button>
-                  <div class="subscription-price">Стоимость: 30 руб./день со счета Билайн</div>
+            <div class="stage">
+              <div v-if="isAoc">
+                <div v-if="passwordViewVisibility == false" class="start-step">
+                  <button
+                    type="button"
+                    class="primary-card"
+                    :class="{'disabled': !submitBtnEnabled}"
+                    @click="sendOTP"
+                  >
+                    Подключить <span>»</span>
+                  </button>
                 </div>
 
-                <div v-else class="otp-step">
-                  <img
-                    src="assets/image/kaspersky-img.png"
-                    alt="Kaspersky"
-                    class="main__image main__image--otp"
-                  />
-                  <div class="form">
-                    <p class="form__title">Введите код из SMS</p>
-                    <p class="form__hint">Код подтверждает подключение сервиса.</p>
+                <div v-else class="code-step">
+                  <div class="code-card">
+                    <p class="code-title">Введите код из SMS</p>
+                    <p class="code-hint">Код подтверждает подключение подписки</p>
                     <label class="input-label" for="sms">SMS-код</label>
                     <input
                       key="password"
@@ -84,73 +68,76 @@
                       maxlength="4"
                       required
                     />
+
                     <button type="button" class="send-link" @click="resendOTPCode">
                       <span v-if="!resendOTP">Код не пришел</span>
                       <span v-else>Отправить повторно</span>
                     </button>
+
                     <div class="notice" v-if="resendOTP && !errorCode">Новый код отправлен</div>
                     <div class="error-container" v-if="errorCode" v-text="accessSectionError"></div>
                   </div>
+
                   <button
                     type="button"
-                    class="btn--confirm"
+                    class="confirm-button"
                     :class="{'disabled': !submitBtnEnabled}"
                     @click="submitPassword"
                   >
-                    Подключить
+                    Подтвердить
                   </button>
-                  <div class="subscription-price">Стоимость: 30 руб./день со счета Билайн</div>
                 </div>
+
+                <div
+                  class="error-container"
+                  v-if="accessSectionError && !passwordViewVisibility"
+                  v-text="accessSectionError"
+                ></div>
               </div>
 
               <div v-else>
-                <div v-if="!ageConfirm" class="step-one">
-                  <button
-                    type="button"
-                    class="main__link--secondary"
-                    :class="{'disabled': !submitBtnEnabled}"
-                    @click="onConfirmAge"
-                  >
-                    Мне уже есть 18 лет
-                  </button>
-                  <div class="subscription-price">Стоимость: 149 руб./мес., со счета билайн</div>
-                </div>
-                <div v-else class="step-one">
-                  <button
-                    type="button"
-                    class="main__link--secondary"
-                    :class="{'disabled': !submitBtnEnabled}"
-                    @click="finalize"
-                  >
-                    Подключить
-                  </button>
-                  <div class="subscription-price">Стоимость: 149 руб./мес., со счета билайн</div>
-                </div>
+                <button
+                  v-if="!ageConfirm"
+                  type="button"
+                  class="primary-card"
+                  :class="{'disabled': !submitBtnEnabled}"
+                  @click="onConfirmAge"
+                >
+                  Мне уже есть 18 лет
+                </button>
+                <button
+                  v-else
+                  type="button"
+                  class="primary-card"
+                  :class="{'disabled': !submitBtnEnabled}"
+                  @click="finalize"
+                >
+                  Подключить <span>»</span>
+                </button>
               </div>
             </div>
-          </div>
+
+            <p class="price">Стоимость: 30 руб./день со счета Билайн</p>
+            <form id="finalize" class="finalize-form" action="/route" method="post">
+              <input type="hidden" name="_token" :value="csrfToken" />
+              <input type="hidden" name="promoter_id" :value="promoterId" />
+              <input type="hidden" name="result" value="subscribed" />
+            </form>
+          </section>
+
+          <section class="payment" v-if="paymentViewVisibility">
+            <iframe src="" class="payment-iframe" title="Оплата"></iframe>
+          </section>
         </main>
 
         <footer class="footer">
-          <div class="container footer__container">
-            <p class="footer__item">Провайдер: ООО «Аффимоб»</p>
-            <p class="footer__item">8-800-333-01-90, support@affimob.com</p>
-            <p class="footer__item">
-              Списание средств осуществляется с основного или контентного счета при его наличии.
-            </p>
-            <p class="footer__item">
-              <a href="https://kaspersky.affimob.com/eula" target="_blank"
-                >Пользовательское соглашение</a
-              >
-            </p>
-          </div>
+          Провайдер: ООО "Аффимоб".<br />
+          8-800-333-01-90, support@affimob.com<br />
+          Списание средств осуществляется с основного или контентного счета при его наличии. <br />
+          <a class="main_page_link" href="https://kaspersky.affimob.com/eula"
+            >Пользовательское соглашение</a
+          >
         </footer>
-
-        <form id="finalize" style="display: none" action="/route" method="post">
-          <input type="hidden" name="_token" :value="csrfToken" />
-          <input type="hidden" name="promoter_id" :value="promoterId" />
-          <input type="hidden" name="result" value="subscribed" />
-        </form>
       </div>
     </div>
 
@@ -158,10 +145,9 @@
       var csrfToken = 'token';
       var promolink = 'promolink';
       var promoterId = 'id';
-      var isGirlLanding = false;
       var isAoc = true;
       var msisdn = 79999999999;
     </script>
-    <script src="assets/js/main.js"></script>
+    <script src="js/main.js?v=20260611"></script>
   </body>
 </html>
