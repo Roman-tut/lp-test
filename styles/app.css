@@ -1266,3 +1266,47 @@ hr {
     margin-top: 5px;
   }
 }
+
+@media (min-width: 1025px) {
+  .main .bg {
+    height: 100%;
+    justify-content: flex-start;
+  }
+
+  .main .bg > .container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .main .bg > .container > .subtitle,
+  .main .bg > .container > .service-description,
+  .main .bg > .container > hr {
+    flex: 0 0 auto;
+  }
+
+  .main .bg > .container > div {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+
+  /* центрируем только первый шаг — как на телефонах */
+  .main .bg > .container > div > .step-one {
+    flex: 1 1 auto;
+    min-height: 0;
+    display: grid;
+    grid-template-rows: 1fr auto 1fr;
+    transform: translateY(-17.5px);
+  }
+
+  .main .bg > .container > div > .step-one .main__image {
+    align-self: end;
+  }
+
+  .main .bg > .container > div > .step-one .subscription-price {
+    align-self: start;
+    margin-top: 5px;
+  }
+}
