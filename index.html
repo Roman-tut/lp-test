@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <meta name="format-detection" content="telephone=no" />
     <title>Касперский Стандарт Мобайл</title>
-    <link rel="stylesheet" href="/styles/app.css" />
+    <link rel="stylesheet" href="./assets/app.css" />
     <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
     <script src="https://cdn.jsdelivr.net/npm/v-mask/dist/v-mask.min.js"></script>
   </head>
@@ -19,7 +19,7 @@
         <header class="header">
           <div class="container header__container">
             <div class="header__kaspersky">
-              <img src="/assets/image/kaspersky-logo.svg" alt="Kaspersky" />
+              <img src="assets/image/kaspersky-logo.svg" alt="Kaspersky" />
             </div>
             <div class="header__danger">
               <svg
@@ -51,7 +51,7 @@
               <hr />
               <div v-if="isAoc">
                 <div v-if="!passwordViewVisibility" class="step-one">
-                  <img src="/assets/image/kaspersky-img.png" alt="Kaspersky" class="main__image" />
+                  <img src="assets/image/kaspersky-img.png" alt="Kaspersky" class="main__image" />
 
                   <button type="button" class="main__link" @click="sendOTP">Подключить</button>
                   <div class="subscription-price">Стоимость: 30 руб./день со счета Билайн</div>
@@ -59,7 +59,7 @@
 
                 <div v-else class="otp-step">
                   <img
-                    src="/assets/image/kaspersky-img.png"
+                    src="assets/image/kaspersky-img.png"
                     alt="Kaspersky"
                     class="main__image main__image--otp"
                   />
@@ -162,6 +162,6 @@
       var isAoc = true;
       var msisdn = 79999999999;
     </script>
-    <script src="/js/main.js"></script>
+    <script src="assets/js/main.js"></script>
   </body>
 </html>
