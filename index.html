@@ -6,89 +6,66 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
     />
-    <title>Магнит Плюс и Защитник</title>
+    <title>Магнит Плюс Премиум</title>
+
     <style>
       :root {
-        --bg-0: #373633;
-        --bg-1: #42413e;
-        --bg-2: #4d4c49;
-        --card: #585754;
-        --line: rgba(255, 255, 255, 0.12);
-        --cream: #ffffff;
-        --cream-dim: #b0afac;
-        --magnit-red: #f92f00;
-        --magnit-red-deep: #c92500;
-        --mts-teal: #00a7b5;
+        --black: #070707;
+        --white: #fff;
+        --muted: #929292;
+        --red: #ef3f35;
         --gold: #ffd69e;
-        --muted: #b0afac;
-        --white: #ffffff;
-        --phone-dark: #0f0a08;
-        --phone-border: #1c1512;
-        --phone-text-dark: #2b1a13;
-        --price-muted: #919191;
-        --header-border: rgb(63, 54, 54);
-        --footer-text: rgba(221, 220, 219, 0.763);
+        --line: rgba(255, 255, 255, 0.1);
       }
+
       * {
         box-sizing: border-box;
         margin: 0;
         padding: 0;
       }
+
       html,
       body {
+        width: 100%;
         height: 100%;
         overflow: hidden;
-        background: var(--bg-0);
-        color: var(--cream);
-        font-family:
-          -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-        -webkit-font-smoothing: antialiased;
-      }
-      img {
-        max-width: 100%;
-        display: block;
-      }
-      a {
-        color: inherit;
+        background: var(--black);
+        color: var(--white);
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
       }
 
       .wrap {
+        position: relative;
+        width: 100%;
+        height: 100dvh;
+        overflow: hidden;
         display: flex;
         flex-direction: column;
-        height: 100dvh;
-        margin: 0 auto;
         background:
-          radial-gradient(
-            65% 40% at 50% 42%,
-            rgba(255, 214, 158, 0.16) 0%,
-            rgba(255, 214, 158, 0.07) 40%,
-            transparent 72%
-          ),
-          radial-gradient(120% 60% at 50% 0%, var(--bg-2) 0%, var(--bg-1) 45%, var(--bg-0) 100%);
-        overflow: hidden;
-        padding-bottom: 0;
-        position: relative;
+          radial-gradient(circle at 50% 35%, rgba(255, 214, 158, 0.1), transparent 36%),
+          radial-gradient(circle at 50% 75%, rgba(255, 214, 158, 0.09), transparent 34%), #070707;
       }
 
       .header {
+        height: 58px;
+        padding: 12px 18px;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 10px 16px 9px;
         flex-shrink: 0;
-        border-bottom: 1px solid var(--header-border);
+        border-bottom: 1px solid var(--line);
+        position: relative;
+        z-index: 5;
       }
 
       .mts-logo-img {
-        height: 30px;
+        height: 28px;
         width: auto;
-        display: block;
       }
 
       .magnit-logo-img {
-        height: 32px;
+        height: 30px;
         width: auto;
-        display: block;
         filter: brightness(0) invert(1);
       }
 
@@ -114,778 +91,613 @@
       }
 
       .premium-word {
-        font-size: 14px;
+        padding: 6px 11px;
+        border: 1px solid rgba(255, 214, 158, 0.3);
+        border-radius: 100px;
+        font-size: 11px;
         font-weight: 700;
-        color: var(--gold);
+        letter-spacing: 0.7px;
+        color: #fff;
+        background: rgba(255, 255, 255, 0.05);
         text-transform: uppercase;
+        box-shadow: 0 0 14px 2px rgba(255, 214, 158, 0.3);
       }
 
-      .hero {
-        padding: 8px 20px 0;
+      .content {
+        flex: 1;
+        min-height: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 18px 20px;
+        position: relative;
+      }
+
+      .eyebrow {
         text-align: center;
-        flex-shrink: 0;
+        color: var(--gold);
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 11px;
       }
 
       h1 {
-        font-size: 22px;
-        line-height: 1.2;
-        font-weight: 800;
-        letter-spacing: -0.2px;
-      }
-      h1 .accent {
-        color: var(--magnit-red);
-      }
-      h1 .accent2 {
-        color: var(--mts-teal);
-      }
-      .hero p {
-        margin-top: 6px;
-        font-size: 12px;
-        line-height: 1.4;
-        color: var(--cream-dim);
-        padding: 0 4px;
+        max-width: 350px;
+        margin: 0 auto;
+        text-align: center;
+        font-size: clamp(30px, 8vw, 43px);
+        line-height: 0.98;
+        letter-spacing: -1.8px;
+        font-weight: 900;
       }
 
-      .chips {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 6px;
-        justify-content: center;
-        padding: 10px 16px 2px;
-        flex-shrink: 0;
-      }
-      .chip {
-        display: flex;
-        align-items: center;
-        gap: 5px;
-        background: var(--card);
-        border: 1px solid var(--line);
-        padding: 5px 10px 5px 6px;
-        border-radius: 30px;
-        font-size: 10.5px;
-        font-weight: 600;
-        color: var(--cream);
-      }
-      .chip .ico {
-        width: 22px;
-        height: 22px;
-        border-radius: 6px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-shrink: 0;
-      }
-      .chip .ico.wide {
-        width: 34px;
-      }
-      .chip .ico svg {
-        width: 13px;
-        height: 13px;
-      }
-      .chip.red .ico {
-        background: var(--magnit-red);
-      }
-      .chip.red .ico.gold {
-        background: transparent;
-      }
-      .chip.red .ico.gold img {
-        max-width: 100%;
-        max-height: 100%;
-        width: auto;
-        height: auto;
-        pointer-events: none;
-      }
-      .chip.teal .ico {
-        background: var(--mts-teal);
-      }
-      .chip.teal {
-        border-color: rgba(0, 167, 181, 0.5);
-        background: rgba(0, 167, 181, 0.1);
-      }
-      .chip.teal span {
-        color: var(--mts-teal);
-      }
-
-      .stage {
-        position: relative;
-        margin: 10px auto 2px;
-        width: 180px;
-        height: 200px;
-        flex-shrink: 0;
-      }
-      .phone {
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        width: 152px;
-        height: 196px;
-        background: var(--phone-dark);
-        border-radius: 22px;
-        border: 3px solid var(--phone-border);
-        box-shadow: 0 14px 30px rgba(0, 0, 0, 0.55);
-        overflow: hidden;
-        z-index: 3;
-      }
-      .phone .screen {
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(160deg, #fff 0%, #fdf1e8 60%, #f7e2cf 100%);
-        padding: 10px 9px;
-      }
-      .phone .app-row {
-        display: flex;
-        align-items: center;
-        gap: 4px;
-        margin-bottom: 8px;
-      }
-      .phone .app-row .m {
-        width: 16px;
-        height: 16px;
-        border-radius: 4px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-shrink: 0;
-      }
-      .phone .app-row .m img {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
+      h1 span {
         display: block;
-        pointer-events: none;
       }
-      .phone .app-row .t {
-        font-size: 8px;
-        font-weight: 700;
-        color: var(--phone-text-dark);
-      }
-      .phone .bonus-card {
-        background: linear-gradient(120deg, var(--magnit-red) 0%, var(--magnit-red-deep) 100%);
-        border-radius: 10px;
-        padding: 8px;
-        color: #fff;
-        margin-bottom: 8px;
-      }
-      .phone .bonus-card .lbl {
-        font-size: 7px;
-        opacity: 0.85;
-      }
-      .phone .bonus-card .val {
-        font-size: 16px;
-        font-weight: 800;
-        margin-top: 1px;
+
+      h1 .gold {
         color: var(--gold);
       }
-      .phone .qr {
-        width: 22px;
-        height: 22px;
-        background: #fff;
-        border-radius: 3px;
-        float: right;
-        margin-top: -20px;
-        background-image:
-          linear-gradient(
-            90deg,
-            var(--phone-dark) 0 20%,
-            transparent 20% 40%,
-            var(--phone-dark) 40% 60%,
-            transparent 60% 80%,
-            var(--phone-dark) 80% 100%
-          ),
-          linear-gradient(
-            var(--phone-dark) 0 20%,
-            transparent 20% 40%,
-            var(--phone-dark) 40% 60%,
-            transparent 60% 80%,
-            var(--phone-dark) 80% 100%
-          );
-        background-size: 100% 100%;
-        opacity: 0.85;
-      }
-      .phone .shield-line {
-        display: flex;
-        align-items: center;
-        gap: 4px;
-        background: rgba(0, 167, 181, 0.12);
-        border: 1px solid rgba(0, 167, 181, 0.4);
-        border-radius: 7px;
-        padding: 4px 6px;
-        margin-top: 6px;
-      }
-      .phone .shield-line svg {
-        width: 11px;
-        height: 11px;
-        flex-shrink: 0;
-      }
-      .phone .shield-line span {
-        font-size: 6.5px;
-        font-weight: 700;
-        color: #0a6f78;
-        line-height: 1.2;
-      }
 
-      .float-ico {
-        position: absolute;
-        width: 62px;
-        height: 62px;
-        border-radius: 15px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-shadow:
-          0 0 28px 6px rgba(255, 214, 158, 0.55),
-          0 10px 18px rgba(0, 0, 0, 0.35);
-        z-index: 4;
-      }
-      .float-ico svg {
-        width: 62px;
-        height: 62px;
-      }
-      .float-ico.f1 {
-        top: 4px;
-        left: -46px;
-        background: transparent;
-        transform: rotate(-6deg);
-      }
-      .float-ico.f1 img {
-        width: 100%;
-        height: auto;
-        pointer-events: none;
-      }
-      .float-ico.f2 {
-        top: 16px;
-        right: -44px;
-        background: transparent;
-        transform: rotate(7deg);
-      }
-      .float-ico.f2 img {
-        width: 170%;
-        max-width: none;
-        height: auto;
-        pointer-events: none;
-      }
-      .float-ico.f3 {
-        bottom: 20px;
-        left: -36px;
-        background: radial-gradient(
-          circle at 30% 25%,
-          #fff8ec 0%,
-          #ffe3bc 30%,
-          #ffd69e 55%,
-          #d9a662 80%,
-          #b8884f 100%
-        );
-        box-shadow:
-          0 0 28px 6px rgba(255, 214, 158, 0.55),
-          0 8px 16px rgba(0, 0, 0, 0.4),
-          inset 0 2px 3px rgba(255, 255, 255, 0.7),
-          inset 0 -4px 5px rgba(120, 80, 20, 0.45);
-        transform: rotate(5deg);
-      }
-      .float-ico.f3 img {
-        width: 80%;
-        height: auto;
-        pointer-events: none;
-      }
-      .float-ico.f4 {
-        bottom: 4px;
-        right: -26px;
-        background: transparent;
-        transform: rotate(-8deg);
-      }
-      .float-ico.f4 img {
-        max-width: 100%;
-        max-height: 100%;
-        width: auto;
-        height: auto;
-        pointer-events: none;
-      }
-
-      .how-compact {
-        display: flex;
-        gap: 8px;
-        padding: 8px 16px 4px;
-        flex-shrink: 0;
-        justify-content: center;
-      }
-      .how-card {
-        flex: 1;
-        background: var(--card);
-        border: 1px solid var(--line);
-        border-radius: 12px;
-        padding: 8px 10px;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-      }
-      .how-card .ico {
-        width: 30px;
-        height: 30px;
-        border-radius: 8px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-shrink: 0;
-      }
-      .how-card .ico svg {
-        width: 16px;
-        height: 16px;
-      }
-      .how-card.magnit .ico {
-        background: transparent;
-      }
-      .how-card.magnit .ico img {
-        width: 100%;
-        height: auto;
-        pointer-events: none;
-      }
-      .how-card.zash .ico {
-        background: var(--mts-teal);
-      }
-      .how-card .text {
-        font-size: 10px;
-        line-height: 1.3;
-        color: var(--cream-dim);
-      }
-      .how-card .text strong {
-        color: var(--cream);
-        font-weight: 700;
-        display: block;
-        font-size: 11px;
-        margin-bottom: 1px;
-      }
       .description {
-        max-width: 310px;
-        margin: 16px auto 0;
+        max-width: 320px;
+        margin: 14px auto 0;
         text-align: center;
         color: var(--muted);
         font-size: 13px;
         line-height: 1.45;
       }
+
       .description strong {
-        color: var(--white);
+        color: #fff;
         font-weight: 750;
       }
 
-      .cta-block {
-        padding: 8px 20px 0;
+      .visual {
+        position: relative;
+        width: min(310px, 82vw);
+        height: 195px;
+        margin: 20px auto 17px;
+      }
+
+      .visual::before {
+        content: '';
+        position: absolute;
+        width: 184px;
+        height: 184px;
+        left: 50%;
+        top: 4px;
+        transform: translateX(-50%);
+        border-radius: 50%;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow:
+          0 0 0 25px rgba(255, 255, 255, 0.015),
+          0 0 0 52px rgba(255, 255, 255, 0.01);
+      }
+      .number {
+        position: absolute;
+        left: 50%;
+        top: 48%;
+        transform: translate(-50%, -50%);
+        font-size: 82px;
+        font-weight: 950;
+        line-height: 1;
+        letter-spacing: -5px;
+        color: rgba(255, 214, 158, 0.14);
+        text-shadow:
+          0 0 45px rgba(255, 214, 158, 0.35),
+          0 0 90px rgba(255, 214, 158, 0.18);
+        z-index: 0;
+      }
+      .center-label {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        width: 150px;
+      }
+
+      .center-label .small {
+        display: block;
+        color: #888;
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        margin-bottom: 4px;
+      }
+
+      .center-label .main {
+        display: block;
+        color: #fff;
+        font-size: 17px;
+        font-weight: 800;
+      }
+
+      .benefit {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 9px 11px;
+        border-radius: 13px;
+        background: rgba(255, 255, 255, 0.055);
+        border: 1px solid rgba(255, 255, 255, 0.09);
+        backdrop-filter: blur(14px);
+        font-size: 10px;
+        font-weight: 700;
+        box-shadow: 0 14px 32px rgba(0, 0, 0, 0.3);
+      }
+
+      .benefit .icon {
+        width: 28px;
+        height: 28px;
+        border-radius: 9px;
+        display: grid;
+        place-items: center;
+        flex-shrink: 0;
+      }
+
+      .benefit .icon svg {
+        width: 15px;
+        height: 15px;
+        display: block;
+      }
+
+      .benefit .icon img {
+        max-width: 100%;
+        max-height: 100%;
+        width: auto;
+        height: auto;
+        pointer-events: none;
+      }
+
+      .b1 {
+        left: 0;
+        top: 4px;
+      }
+
+      .b2 {
+        right: 0;
+        top: 2px;
+      }
+
+      .b3 {
+        left: -5px;
+        bottom: 8px;
+      }
+
+      .b4 {
+        right: 5px;
+        bottom: 18px;
+      }
+
+      .b1 .icon,
+      .b3 .icon {
+        background: rgba(239, 63, 53, 0.9);
+      }
+
+      .b3 .icon {
+        background: transparent;
+      }
+
+      .b2 .icon,
+      .b4 .icon {
+        background: rgba(255, 214, 158, 0.9);
+        color: #211305;
+      }
+
+      .b1 .icon svg,
+      .b3 .icon svg {
+        stroke: #fff;
+      }
+
+      .b2 .icon svg,
+      .b4 .icon svg {
+        stroke: #211305;
+      }
+
+      .cta {
+        width: 100%;
+        max-width: 390px;
+        margin: 0 auto;
         text-align: center;
       }
-      .price-line {
-        font-size: 14px;
-        font-weight: 400;
-        color: var(--price-muted);
-        box-shadow: none;
-        border: none;
-        border-radius: 0px;
-        opacity: 0.7;
-      }
+
       .btn {
         display: flex;
         align-items: center;
         justify-content: center;
         width: 100%;
-        border: none;
-        border-radius: 10px;
-        height: clamp(100px, 12vh, 180px);
-        font-size: 25px;
-        font-weight: 800;
-        color: #373633;
+        height: clamp(50px, 14vh, 200px);
+        border: 0;
+        border-radius: 17px;
         background: linear-gradient(135deg, #fff2d6 0%, #ffd69e 45%, #d9a662 75%, #b8884f 100%);
+        color: #373633;
+        font-size: 25px;
+        font-weight: 850;
         cursor: pointer;
-        letter-spacing: 0.2px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
         text-decoration: none;
+      }
+
+      .price {
+        margin-top: 9px;
+        color: #888;
+        font-size: 12px;
+        line-height: 1.4;
+        opacity: 0.7;
+      }
+
+      .price-line strong {
+        color: #fff;
+        font-weight: 800;
+      }
+
+      .cancel-link {
+        display: inline-block;
+        margin-top: 7px;
+        color: #afafaf;
+        font-size: 11px;
+        text-decoration: underline;
+        text-underline-offset: 3px;
       }
 
       .footer {
         flex-shrink: 0;
-        width: 100%;
-        padding: 6px 16px 10px;
+        padding: 9px 16px 12px;
         border-top: 1px solid var(--line);
-        margin-top: auto;
       }
+
       .footer p {
-        font-size: 10px;
-        line-height: 1.4;
-        color: var(--footer-text);
+        max-width: 390px;
+        margin: auto;
+        color: #d5d5d5;
         text-align: center;
-      }
-      .footer p a {
-        color: var(--cream);
-        text-decoration: underline;
+        font-size: 10px;
+        line-height: 1.45;
       }
 
-      @media (max-width: 360px) {
-        h1 {
-          font-size: 19px;
+      .footer a {
+        color: #888;
+      }
+
+      @media (max-height: 680px) {
+        .content {
+          padding-top: 8px;
         }
-        .stage {
-          width: 160px;
-          height: 180px;
+
+        .visual {
+          height: 150px;
+          margin: 12px auto;
         }
-        .phone {
-          width: 136px;
-          height: 176px;
+
+        .visual::before {
+          width: 145px;
+          height: 145px;
         }
-        .chip {
+
+        .number {
+          font-size: 62px;
+        }
+
+        .benefit {
+          padding: 7px 9px;
           font-size: 9px;
-          padding: 4px 8px 4px 4px;
-        }
-        .how-card .text {
-          font-size: 9px;
         }
 
-        .footer p {
-          font-size: 8px;
-        }
-      }
-      @media (max-height: 700px) {
-        .stage {
-          margin: 4px auto 0;
-          width: 160px;
-          height: 170px;
-        }
-        .phone {
-          width: 136px;
-          height: 166px;
-        }
-        .chips {
-          padding: 6px 12px 0;
-          gap: 4px;
-        }
-        .how-compact {
-          padding: 4px 12px 2px;
-          gap: 6px;
-        }
-        .cta-block {
-          padding: 4px 16px 0;
-        }
-        .btn {
-          height: clamp(72px, 11vh, 120px);
-          font-size: 22px;
-        }
-        .price-line {
-          margin-bottom: 4px;
-        }
-        .description {
-          margin-top: 6px;
-          font-size: 12px;
+        .benefit .icon {
+          width: 24px;
+          height: 24px;
         }
 
-        .footer {
-          padding: 4px 12px 6px;
+        .benefit .icon svg {
+          width: 13px;
+          height: 13px;
         }
+
         h1 {
-          font-size: 20px;
-        }
-        .hero p {
-          font-size: 11px;
+          font-size: 28px;
         }
       }
-      @media (orientation: landscape) and (max-height: 500px) {
+      @media screen and (orientation: landscape) and (max-height: 500px) {
         .header {
-          padding: 6px 12px 4px;
-          border-bottom-width: 1px;
-        }
-        .hero {
-          padding: 4px 12px 0;
-        }
-
-        .stage {
-          display: none;
-        }
-        .cta-block {
-          padding: 4px 16px 0;
-        }
-        .footer {
-          padding: 4px 12px 6px;
-          border-top-width: 1px;
-        }
-
-        h1 {
-          font-size: 18px;
-        }
-        .hero p {
-          font-size: 11px;
-          margin-top: 2px;
-        }
-        .btn {
-          font-size: 20px;
-          border-radius: 10px;
-          height: clamp(56px, 18vh, 90px);
-        }
-        .price-line {
-          font-size: 12px;
-          margin-top: 2px;
-        }
-        .chips {
-          padding: 4px 12px 0;
-          gap: 4px;
-        }
-        .chip {
-          padding: 4px 9px 4px 5px;
-        }
-        .how-compact {
-          padding: 4px 12px 0;
-          gap: 6px;
-        }
-        .how-card {
-          padding: 6px 9px;
-        }
-        .description {
-          margin-top: 4px;
-          font-size: 12px;
-        }
-        .footer p {
-          font-size: 9px;
-          line-height: 1.3;
+          height: 44px;
+          padding: 7px 16px;
         }
 
         .mts-logo-img {
-          height: 24px;
+          height: 21px;
         }
+
         .magnit-logo-img {
-          height: 26px;
+          height: 23px;
         }
+
         .premium-label {
           font-size: 9px;
           padding: 2px 7px;
         }
+
         .premium-word {
-          font-size: 12px;
+          padding: 4px 9px;
+          font-size: 9px;
         }
 
-        .wrap {
-          justify-content: flex-start;
-          padding: 0;
+        .content {
+          justify-content: center;
+          padding: 6px 18px;
         }
-      }
-      @media screen and (min-width: 600px) and (max-width: 1024px) and (orientation: portrait) {
-        .hero {
-          padding-top: 20px;
+
+        .eyebrow {
+          margin-bottom: 5px;
+          font-size: 8px;
+          letter-spacing: 1.5px;
         }
 
         h1 {
-          font-size: 30px;
+          max-width: 500px;
+          font-size: 24px;
+          line-height: 0.92;
+          letter-spacing: -1px;
         }
 
-        .hero p {
-          font-size: 14px;
-          margin-top: 10px;
+        h1 span {
+          display: inline;
         }
 
-        .chips {
-          gap: 10px;
-          padding-top: 16px;
-        }
-
-        .chip {
-          padding: 7px 12px 7px 7px;
-          font-size: 12px;
-        }
-
-        .chip .ico {
-          width: 26px;
-          height: 26px;
-        }
-        .chip .ico.wide {
-          width: 40px;
-        }
-        .stage {
-          width: 230px;
-          height: 260px;
-          margin: 50px auto 50px;
-        }
-
-        .phone {
-          width: 190px;
-          height: 285px;
-        }
-
-        .how-compact {
-          gap: 12px;
-          padding: 12px 24px 6px;
-        }
-
-        .how-card {
-          padding: 12px 14px;
-          min-height: 100px;
-        }
-
-        .how-card .ico {
-          width: 36px;
-          height: 36px;
-        }
-
-        .how-card .text {
-          font-size: 12px;
-        }
-
-        .how-card .text strong {
-          font-size: 13px;
-          margin-bottom: 3px;
+        h1 span + span::before {
+          content: ' ';
         }
 
         .description {
-          margin-top: 14px;
-          font-size: 15px;
+          max-width: 520px;
+          margin-top: 6px;
+          font-size: 10px;
+          line-height: 1.25;
         }
 
-        .cta-block {
-          padding: 14px 28px 0;
+        .visual {
+          width: min(520px, 75vw);
+          height: 105px;
+          margin: 7px auto 7px;
+        }
+
+        .visual::before {
+          width: 100px;
+          height: 100px;
+          top: 2px;
+          box-shadow:
+            0 0 0 14px rgba(255, 255, 255, 0.015),
+            0 0 0 28px rgba(255, 255, 255, 0.01);
+        }
+
+        .number {
+          top: 50%;
+          font-size: 48px;
+          letter-spacing: -3px;
+        }
+
+        .center-label {
+          width: 110px;
+        }
+
+        .center-label .small {
+          font-size: 7px;
+          letter-spacing: 1px;
+          margin-bottom: 2px;
+        }
+
+        .center-label .main {
+          font-size: 11px;
+          line-height: 1;
+        }
+
+        .benefit {
+          gap: 5px;
+          padding: 5px 7px;
+          border-radius: 9px;
+          font-size: 8px;
+          line-height: 1;
+        }
+
+        .benefit .icon {
+          width: 20px;
+          height: 20px;
+          border-radius: 6px;
+        }
+
+        .benefit .icon svg {
+          width: 11px;
+          height: 11px;
+        }
+
+        .b1 {
+          left: 0;
+          top: 2px;
+        }
+
+        .b2 {
+          right: 0;
+          top: 15px;
+        }
+
+        .b3 {
+          left: 4px;
+          bottom: 2px;
+        }
+
+        .b4 {
+          right: 4px;
+          bottom: 8px;
+        }
+
+        .cta {
+          max-width: 420px;
         }
 
         .btn {
-          height: clamp(190px, 12vh, 240px);
-          font-size: 40px;
+          height: 140px;
+          border-radius: 12px;
+          font-size: 24px;
         }
 
-        .price-line {
-          font-size: 14px;
-          margin-top: 10px;
+        .price {
+          margin-top: 4px;
+          font-size: 9px;
+        }
+
+        .cancel-link {
+          margin-top: 3px;
+          font-size: 8px;
         }
 
         .footer {
-          padding: 10px 28px 14px;
+          padding: 5px 14px 6px;
         }
 
         .footer p {
-          font-size: 11px;
+          max-width: 650px;
+          font-size: 7px;
+          line-height: 1.25;
         }
       }
-      @media (min-width: 390px) and (max-width: 599px) and (min-height: 701px) and (orientation: portrait) {
-        .stage {
-          width: 210px;
-          height: 232px;
+
+      @media screen and (orientation: landscape) and (max-height: 390px) {
+        .header {
+          height: 38px;
+          padding: 5px 14px;
         }
-        .phone {
-          width: 176px;
-          height: 226px;
-          border-radius: 28px;
+
+        .mts-logo-img {
+          height: 18px;
         }
-        .phone .screen {
-          padding: 14px 12px 12px;
-        }
-        .phone .app-row {
-          margin-bottom: 10px;
-        }
-        .phone .app-row .m {
-          width: 20px;
+
+        .magnit-logo-img {
           height: 20px;
-          font-size: 9px;
         }
-        .phone .app-row .t {
-          font-size: 10px;
-        }
-        .phone .bonus-card {
-          padding: 10px 12px;
-          margin-bottom: 10px;
-        }
-        .phone .bonus-card .lbl {
+
+        .premium-label {
           font-size: 8px;
+          padding: 2px 6px;
         }
-        .phone .bonus-card .val {
-          font-size: 19px;
-        }
-        .phone .qr {
-          width: 26px;
-          height: 26px;
-          margin-top: -24px;
-        }
-        .phone .shield-line {
-          padding: 6px 8px;
-          gap: 6px;
-        }
-        .phone .shield-line svg {
-          width: 14px;
-          height: 14px;
-        }
-        .phone .shield-line span {
+
+        .premium-word {
+          padding: 3px 7px;
           font-size: 8px;
         }
 
-        .float-ico {
-          width: 70px;
-          height: 70px;
-          border-radius: 17px;
+        .content {
+          padding: 3px 14px;
         }
-        .float-ico svg {
-          width: 70px;
-          height: 70px;
-        }
-        .float-ico.f1 {
-          left: -56px;
-        }
-        .float-ico.f2 {
-          right: -52px;
-        }
-        .float-ico.f3 {
-          left: -44px;
-        }
-        .float-ico.f4 {
-          right: -32px;
-        }
-      }
 
-      /* Низкий портрет: 13 mini / SE, а также iPhone 13 с развёрнутой адресной строкой.
-         Футер не должен уезжать за край — вся страница без скролла. */
-      @media (max-height: 645px) and (orientation: portrait) {
-        .hero {
-          padding-top: 4px;
+        .eyebrow {
+          display: none;
         }
+
         h1 {
-          font-size: 19px;
+          font-size: 21px;
+          line-height: 0.9;
         }
-        .hero p {
-          font-size: 10.5px;
-          margin-top: 4px;
-        }
-        .chips {
-          padding: 4px 12px 0;
-        }
-        .stage {
-          margin: 2px auto 0;
-          width: 146px;
-          height: 150px;
-        }
-        .phone {
-          width: 124px;
-          height: 148px;
-          border-radius: 18px;
-        }
-        .float-ico,
-        .float-ico svg {
-          width: 54px;
-          height: 54px;
-        }
-        .how-compact {
-          padding: 4px 12px 0;
-        }
-        .how-card {
-          padding: 6px 9px;
-        }
+
         .description {
           margin-top: 4px;
-          font-size: 11.5px;
+          font-size: 8px;
         }
-        .btn {
-          height: clamp(64px, 10.5vh, 96px);
-          font-size: 21px;
+
+        .visual {
+          height: 82px;
+          margin: 4px auto;
+          width: min(470px, 78vw);
         }
-        .footer p {
+
+        .visual::before {
+          width: 76px;
+          height: 76px;
+        }
+
+        .number {
+          font-size: 37px;
+        }
+
+        .center-label {
+          width: 85px;
+        }
+
+        .center-label .small {
+          font-size: 6px;
+        }
+
+        .center-label .main {
           font-size: 9px;
-          line-height: 1.3;
+        }
+
+        .benefit {
+          padding: 4px 6px;
+          font-size: 7px;
+          border-radius: 7px;
+        }
+
+        .benefit .icon {
+          width: 17px;
+          height: 17px;
+          border-radius: 5px;
+        }
+
+        .benefit .icon svg {
+          width: 9px;
+          height: 9px;
+        }
+
+        .b1 {
+          top: 0;
+        }
+
+        .b2 {
+          top: 8px;
+        }
+
+        .b3 {
+          bottom: 0;
+        }
+
+        .b4 {
+          bottom: 5px;
+        }
+
+        .btn {
+          height: 100px;
+          border-radius: 10px;
+          font-size: 20px;
+        }
+
+        .price {
+          margin-top: 3px;
+          font-size: 8px;
+        }
+
+        .cancel-link {
+          display: none;
+        }
+
+        .footer {
+          padding: 4px 10px 5px;
+        }
+
+        .footer p {
+          font-size: 6px;
+          line-height: 1.2;
         }
       }
     </style>
   </head>
+
   <body>
     <div class="wrap">
-      <div class="header">
-        <div class="header-left">
-          <img src="assets/image/logomts.svg" alt="МТС" class="mts-logo-img" />
-        </div>
+      <header class="header">
+        <img src="assets/image/logomts.svg" alt="МТС" class="mts-logo-img" />
 
         <div class="header-center">
           <img
@@ -896,127 +708,92 @@
           <span class="premium-label">Премиум</span>
         </div>
 
-        <div class="header-right">
-          <span class="premium-word">18+</span>
-        </div>
-      </div>
+        <span class="premium-word">18+</span>
+      </header>
 
-      <div class="hero">
-        <h1><span class="accent">Магнит Плюс</span> и <span class="accent2">Защитник</span></h1>
-        <p>Бонусы и скидки в любимых категориях — а «Защитник» избавит от спама</p>
-      </div>
+      <main class="content">
+        <div class="eyebrow">Только для взрослых</div>
 
-      <div class="chips">
-        <div class="chip red">
-          <span class="ico gold"
-            ><img src="assets/image/gold-heart.webp" alt="Золотое сердце" /></span
-          ><span> До 50% кэшбэка</span>
-        </div>
-        <div class="chip red">
-          <span class="ico gold"
-            ><img src="assets/image/gold-basket.webp" alt="Золотая корзина" /></span
-          ><span>5% — Магнит Аптека</span>
-        </div>
+        <h1>
+          <span class="gold">Больше.</span>
+          <span>Ярче.</span>
+          <span class="gold">Горячее.</span>
+        </h1>
 
-        <div class="chip red">
-          <span class="ico gold wide"
-            ><img src="assets/image/gold-369-cashback-tiers.webp" alt="Золотые цифры 3-6-9" /></span
-          ><span>50% — кофе и чай с собой</span>
-        </div>
-        <div class="chip teal">
-          <span class="ico"
-            ><svg viewBox="0 0 24 24" fill="none">
-              <path
-                d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"
-                stroke="#fff"
-                stroke-width="2"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M9.5 12l1.7 1.8L15 10"
-                stroke="#fff"
+        <p class="description">
+          Больше возможностей с <strong>Магнит Плюс</strong> и <strong>Защитником</strong>.<br />
+          До 50% кэшбэка и 400 бонусов в среднем каждый месяц.
+        </p>
+
+        <div class="visual">
+          <div class="number">18+</div>
+
+          <div class="center-label">
+            <span class="small">10 категорий</span>
+            <span class="main">Больше удовольствия</span>
+          </div>
+
+          <div class="benefit b1">
+            <div class="icon">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
                 stroke-width="2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
-              /></svg></span
-          ><span>Защитник</span>
-        </div>
-      </div>
-
-      <div class="stage">
-        <div class="float-ico f1">
-          <img src="assets/image/gold-basket.webp" alt="Золотая корзина" />
-        </div>
-        <div class="float-ico f2">
-          <img src="assets/image/gold-50-cashback-badge.webp" alt="Бейдж 50% M+" />
-        </div>
-        <div class="float-ico f3"><img src="assets/image/mplus-3d.webp" alt="3D логотип M+" /></div>
-        <div class="float-ico f4">
-          <img src="assets/image/gold-369-cashback-tiers.webp" alt="Золотые цифры 3-6-9" />
-        </div>
-
-        <div class="phone">
-          <div class="screen">
-            <div class="app-row">
-              <div class="m">
-                <img src="assets/image/mplus-app-icon.webp" alt="Иконка приложения M+" />
-              </div>
-              <div class="t">Магнит Плюс</div>
+              >
+                <circle cx="7.5" cy="15.5" r="5.5" />
+                <path d="M21 2l-9.6 9.6" />
+                <path d="M15.5 7.5l3 3L22 7l-3-3" />
+              </svg>
             </div>
-            <div class="bonus-card">
-              <div class="qr"></div>
-              <div class="lbl">Бонусы</div>
-              <div class="val">+ 678</div>
-            </div>
-            <div class="shield-line">
-              <svg viewBox="0 0 24 24" fill="none">
+            Горячий контент
+          </div>
+
+          <div class="benefit b2">
+            <div class="icon">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
                 <path
-                  d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"
-                  stroke="#0a6f78"
-                  stroke-width="2.2"
-                  stroke-linejoin="round"
+                  d="M12 3l2.8 5.7 6.2.9-4.5 4.4 1.1 6.2L12 17.3 6.4 20.2l1.1-6.2L3 9.6l6.2-.9L12 3z"
                 />
               </svg>
-              <span>Защитник активен — спам заблокирован</span>
             </div>
+            Премиум-доступ
+          </div>
+
+          <div class="benefit b3">
+            <div class="icon">
+              <img src="assets/image/gold-heart_1_11zon.webp" alt="Золотое сердце" />
+            </div>
+            До 50% кэшбэка
+          </div>
+
+          <div class="benefit b4">
+            <div class="icon">
+              <img src="assets/image/mplus-3_2_11zon.webp" alt="3D логотип M+" />
+            </div>
+            400 бонусов в среднем
           </div>
         </div>
-      </div>
 
-      <div class="how-compact">
-        <div class="how-card magnit">
-          <div class="ico"><img src="assets/image/gold-basket.webp" alt="Золотая корзина" /></div>
-          <div class="text"><strong>Магнит Плюс</strong>Бонусы и суперценки до 10 категорий</div>
+        <div class="cta">
+          <a href="{offer_link}" class="btn">Получить доступ</a>
+          <div class="price">159 руб. в месяц, списание с мобильного счета</div>
         </div>
-        <div class="how-card zash">
-          <div class="ico">
-            <svg viewBox="0 0 24 24" fill="none">
-              <path
-                d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"
-                stroke="#fff"
-                stroke-width="2"
-                stroke-linejoin="round"
-              />
-            </svg>
-          </div>
-          <div class="text"><strong>Защитник</strong>Блокирует спам-звонки и SMS</div>
-        </div>
-      </div>
-      <p class="description">
-        <strong>В среднем 400 бонусов каждый месяц</strong>
-      </p>
+      </main>
 
-      <div class="cta-block">
-        <a href="{offer_link}" class="btn">Посмотреть</a>
-        <div class="price-line">159 руб. в месяц, списание с мобильного счета</div>
-      </div>
-
-      <div class="footer">
+      <footer class="footer">
         <p>
-          18+. Нажимая на кнопку «Посмотреть», Вы соглашаетесь с подключением подписки «Магнит Плюс
-          и Защитник» и условиями сервиса. Услугу предоставляет ПАО «МТС».
+          18+. Нажимая на кнопку «Получить доступ», Вы соглашаетесь с подключением подписки «Магнит
+          Плюс Премиум» и условиями сервиса. Услугу предоставляет ПАО «МТС».
         </p>
-      </div>
+      </footer>
     </div>
   </body>
 </html>
