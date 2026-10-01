@@ -561,8 +561,16 @@
         .cta-block {
           padding: 4px 16px 0;
         }
+        .btn {
+          height: clamp(72px, 11vh, 120px);
+          font-size: 22px;
+        }
         .price-line {
           margin-bottom: 4px;
+        }
+        .description {
+          margin-top: 6px;
+          font-size: 12px;
         }
 
         .footer {
@@ -603,13 +611,31 @@
           margin-top: 2px;
         }
         .btn {
-          font-size: 22px;
+          font-size: 20px;
           border-radius: 10px;
-          height: clamp(100px, 12vh, 240px);
+          height: clamp(56px, 18vh, 90px);
         }
         .price-line {
           font-size: 12px;
           margin-top: 2px;
+        }
+        .chips {
+          padding: 4px 12px 0;
+          gap: 4px;
+        }
+        .chip {
+          padding: 4px 9px 4px 5px;
+        }
+        .how-compact {
+          padding: 4px 12px 0;
+          gap: 6px;
+        }
+        .how-card {
+          padding: 6px 9px;
+        }
+        .description {
+          margin-top: 4px;
+          font-size: 12px;
         }
         .footer p {
           font-size: 9px;
@@ -728,7 +754,7 @@
           font-size: 11px;
         }
       }
-      @media (min-width: 390px) and (max-width: 599px) and (orientation: portrait) {
+      @media (min-width: 390px) and (max-width: 599px) and (min-height: 701px) and (orientation: portrait) {
         .stage {
           width: 210px;
           height: 232px;
@@ -799,6 +825,57 @@
         }
         .float-ico.f4 {
           right: -32px;
+        }
+      }
+
+      /* Низкий портрет: 13 mini / SE, а также iPhone 13 с развёрнутой адресной строкой.
+         Футер не должен уезжать за край — вся страница без скролла. */
+      @media (max-height: 645px) and (orientation: portrait) {
+        .hero {
+          padding-top: 4px;
+        }
+        h1 {
+          font-size: 19px;
+        }
+        .hero p {
+          font-size: 10.5px;
+          margin-top: 4px;
+        }
+        .chips {
+          padding: 4px 12px 0;
+        }
+        .stage {
+          margin: 2px auto 0;
+          width: 146px;
+          height: 150px;
+        }
+        .phone {
+          width: 124px;
+          height: 148px;
+          border-radius: 18px;
+        }
+        .float-ico,
+        .float-ico svg {
+          width: 54px;
+          height: 54px;
+        }
+        .how-compact {
+          padding: 4px 12px 0;
+        }
+        .how-card {
+          padding: 6px 9px;
+        }
+        .description {
+          margin-top: 4px;
+          font-size: 11.5px;
+        }
+        .btn {
+          height: clamp(64px, 10.5vh, 96px);
+          font-size: 21px;
+        }
+        .footer p {
+          font-size: 9px;
+          line-height: 1.3;
         }
       }
     </style>
