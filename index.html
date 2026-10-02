@@ -1,797 +1,114 @@
 <!doctype html>
 <html lang="ru">
   <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-    />
-    <title>Магнит Плюс Премиум</title>
-
-    <style>
-      :root {
-        --black: #070707;
-        --white: #fff;
-        --muted: #929292;
-        --red: #ef3f35;
-        --gold: #ffd69e;
-        --line: rgba(255, 255, 255, 0.1);
-      }
-
-      * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
-
-      html,
-      body {
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-        background: var(--black);
-        color: var(--white);
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
-      }
-
-      .wrap {
-        position: relative;
-        width: 100%;
-        height: 100dvh;
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-        background:
-          radial-gradient(circle at 50% 35%, rgba(255, 214, 158, 0.1), transparent 36%),
-          radial-gradient(circle at 50% 75%, rgba(255, 214, 158, 0.09), transparent 34%), #070707;
-      }
-
-      .header {
-        height: 58px;
-        padding: 12px 18px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        flex-shrink: 0;
-        border-bottom: 1px solid var(--line);
-        position: relative;
-        z-index: 5;
-      }
-
-      .mts-logo-img {
-        height: 28px;
-        width: auto;
-      }
-
-      .magnit-logo-img {
-        height: 30px;
-        width: auto;
-        filter: brightness(0) invert(1);
-      }
-
-      .header-center {
-        display: flex;
-        align-items: center;
-        gap: 6px;
-      }
-
-      .premium-label {
-        display: inline-flex;
-        align-items: center;
-        font-size: 10px;
-        font-weight: 700;
-        letter-spacing: 0.3px;
-        text-transform: uppercase;
-        color: var(--gold);
-        background: rgba(255, 214, 158, 0.14);
-        border: 1px solid rgba(255, 214, 158, 0.35);
-        border-radius: 20px;
-        padding: 3px 9px;
-        white-space: nowrap;
-      }
-
-      .premium-word {
-        padding: 6px 11px;
-        border: 1px solid rgba(255, 214, 158, 0.3);
-        border-radius: 100px;
-        font-size: 11px;
-        font-weight: 700;
-        letter-spacing: 0.7px;
-        color: #fff;
-        background: rgba(255, 255, 255, 0.05);
-        text-transform: uppercase;
-        box-shadow: 0 0 14px 2px rgba(255, 214, 158, 0.3);
-      }
-
-      .content {
-        flex: 1;
-        min-height: 0;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        padding: 18px 20px;
-        position: relative;
-      }
-
-      .eyebrow {
-        text-align: center;
-        color: var(--gold);
-        font-size: 10px;
-        font-weight: 800;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-        margin-bottom: 11px;
-      }
-
-      h1 {
-        max-width: 350px;
-        margin: 0 auto;
-        text-align: center;
-        font-size: clamp(30px, 8vw, 43px);
-        line-height: 0.98;
-        letter-spacing: -1.8px;
-        font-weight: 900;
-      }
-
-      h1 span {
-        display: block;
-      }
-
-      h1 .gold {
-        color: var(--gold);
-      }
-
-      .description {
-        max-width: 320px;
-        margin: 14px auto 0;
-        text-align: center;
-        color: var(--muted);
-        font-size: 13px;
-        line-height: 1.45;
-      }
-
-      .description strong {
-        color: #fff;
-        font-weight: 750;
-      }
-
-      .visual {
-        position: relative;
-        width: min(310px, 82vw);
-        height: 195px;
-        margin: 20px auto 17px;
-      }
-
-      .visual::before {
-        content: '';
-        position: absolute;
-        width: 184px;
-        height: 184px;
-        left: 50%;
-        top: 4px;
-        transform: translateX(-50%);
-        border-radius: 50%;
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        box-shadow:
-          0 0 0 25px rgba(255, 255, 255, 0.015),
-          0 0 0 52px rgba(255, 255, 255, 0.01);
-      }
-      .number {
-        position: absolute;
-        left: 50%;
-        top: 48%;
-        transform: translate(-50%, -50%);
-        font-size: 82px;
-        font-weight: 950;
-        line-height: 1;
-        letter-spacing: -5px;
-        color: rgba(255, 214, 158, 0.14);
-        text-shadow:
-          0 0 45px rgba(255, 214, 158, 0.35),
-          0 0 90px rgba(255, 214, 158, 0.18);
-        z-index: 0;
-      }
-      .center-label {
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        text-align: center;
-        width: 150px;
-      }
-
-      .center-label .small {
-        display: block;
-        color: #888;
-        font-size: 10px;
-        text-transform: uppercase;
-        letter-spacing: 1.5px;
-        margin-bottom: 4px;
-      }
-
-      .center-label .main {
-        display: block;
-        color: #fff;
-        font-size: 17px;
-        font-weight: 800;
-      }
-
-      .benefit {
-        position: absolute;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        padding: 9px 11px;
-        border-radius: 13px;
-        background: rgba(255, 255, 255, 0.055);
-        border: 1px solid rgba(255, 255, 255, 0.09);
-        backdrop-filter: blur(14px);
-        font-size: 10px;
-        font-weight: 700;
-        box-shadow: 0 14px 32px rgba(0, 0, 0, 0.3);
-      }
-
-      .benefit .icon {
-        width: 28px;
-        height: 28px;
-        border-radius: 9px;
-        display: grid;
-        place-items: center;
-        flex-shrink: 0;
-      }
-
-      .benefit .icon svg {
-        width: 15px;
-        height: 15px;
-        display: block;
-      }
-
-      .benefit .icon img {
-        max-width: 100%;
-        max-height: 100%;
-        width: auto;
-        height: auto;
-        pointer-events: none;
-      }
-
-      .b1 {
-        left: 0;
-        top: 4px;
-      }
-
-      .b2 {
-        right: 0;
-        top: 2px;
-      }
-
-      .b3 {
-        left: -5px;
-        bottom: 8px;
-      }
-
-      .b4 {
-        right: 5px;
-        bottom: 18px;
-      }
-
-      .b1 .icon,
-      .b3 .icon {
-        background: rgba(239, 63, 53, 0.9);
-      }
-
-      .b3 .icon {
-        background: transparent;
-      }
-
-      .b2 .icon,
-      .b4 .icon {
-        background: rgba(255, 214, 158, 0.9);
-        color: #211305;
-      }
-
-      .b1 .icon svg,
-      .b3 .icon svg {
-        stroke: #fff;
-      }
-
-      .b2 .icon svg,
-      .b4 .icon svg {
-        stroke: #211305;
-      }
-
-      .cta {
-        width: 100%;
-        max-width: 390px;
-        margin: 0 auto;
-        text-align: center;
-      }
-
-      .btn {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        height: clamp(50px, 14vh, 200px);
-        border: 0;
-        border-radius: 17px;
-        background: linear-gradient(135deg, #fff2d6 0%, #ffd69e 45%, #d9a662 75%, #b8884f 100%);
-        color: #373633;
-        font-size: 25px;
-        font-weight: 850;
-        cursor: pointer;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
-        text-decoration: none;
-      }
-
-      .price {
-        margin-top: 9px;
-        color: #888;
-        font-size: 12px;
-        line-height: 1.4;
-        opacity: 0.7;
-      }
-
-      .price-line strong {
-        color: #fff;
-        font-weight: 800;
-      }
-
-      .cancel-link {
-        display: inline-block;
-        margin-top: 7px;
-        color: #afafaf;
-        font-size: 11px;
-        text-decoration: underline;
-        text-underline-offset: 3px;
-      }
-
-      .footer {
-        flex-shrink: 0;
-        padding: 9px 16px 12px;
-        border-top: 1px solid var(--line);
-      }
-
-      .footer p {
-        max-width: 390px;
-        margin: auto;
-        color: #d5d5d5;
-        text-align: center;
-        font-size: 10px;
-        line-height: 1.45;
-      }
-
-      .footer a {
-        color: #888;
-      }
-
-      @media (max-height: 680px) {
-        .content {
-          padding-top: 8px;
-        }
-
-        .visual {
-          height: 150px;
-          margin: 12px auto;
-        }
-
-        .visual::before {
-          width: 145px;
-          height: 145px;
-        }
-
-        .number {
-          font-size: 62px;
-        }
-
-        .benefit {
-          padding: 7px 9px;
-          font-size: 9px;
-        }
-
-        .benefit .icon {
-          width: 24px;
-          height: 24px;
-        }
-
-        .benefit .icon svg {
-          width: 13px;
-          height: 13px;
-        }
-
-        h1 {
-          font-size: 28px;
-        }
-      }
-      @media screen and (orientation: landscape) and (max-height: 500px) {
-        .header {
-          height: 44px;
-          padding: 7px 16px;
-        }
-
-        .mts-logo-img {
-          height: 21px;
-        }
-
-        .magnit-logo-img {
-          height: 23px;
-        }
-
-        .premium-label {
-          font-size: 9px;
-          padding: 2px 7px;
-        }
-
-        .premium-word {
-          padding: 4px 9px;
-          font-size: 9px;
-        }
-
-        .content {
-          justify-content: center;
-          padding: 6px 18px;
-        }
-
-        .eyebrow {
-          margin-bottom: 5px;
-          font-size: 8px;
-          letter-spacing: 1.5px;
-        }
-
-        h1 {
-          max-width: 500px;
-          font-size: 24px;
-          line-height: 0.92;
-          letter-spacing: -1px;
-        }
-
-        h1 span {
-          display: inline;
-        }
-
-        h1 span + span::before {
-          content: ' ';
-        }
-
-        .description {
-          max-width: 520px;
-          margin-top: 6px;
-          font-size: 10px;
-          line-height: 1.25;
-        }
-
-        .visual {
-          width: min(520px, 75vw);
-          height: 105px;
-          margin: 7px auto 7px;
-        }
-
-        .visual::before {
-          width: 100px;
-          height: 100px;
-          top: 2px;
-          box-shadow:
-            0 0 0 14px rgba(255, 255, 255, 0.015),
-            0 0 0 28px rgba(255, 255, 255, 0.01);
-        }
-
-        .number {
-          top: 50%;
-          font-size: 48px;
-          letter-spacing: -3px;
-        }
-
-        .center-label {
-          width: 110px;
-        }
-
-        .center-label .small {
-          font-size: 7px;
-          letter-spacing: 1px;
-          margin-bottom: 2px;
-        }
-
-        .center-label .main {
-          font-size: 11px;
-          line-height: 1;
-        }
-
-        .benefit {
-          gap: 5px;
-          padding: 5px 7px;
-          border-radius: 9px;
-          font-size: 8px;
-          line-height: 1;
-        }
-
-        .benefit .icon {
-          width: 20px;
-          height: 20px;
-          border-radius: 6px;
-        }
-
-        .benefit .icon svg {
-          width: 11px;
-          height: 11px;
-        }
-
-        .b1 {
-          left: 0;
-          top: 2px;
-        }
-
-        .b2 {
-          right: 0;
-          top: 15px;
-        }
-
-        .b3 {
-          left: 4px;
-          bottom: 2px;
-        }
-
-        .b4 {
-          right: 4px;
-          bottom: 8px;
-        }
-
-        .cta {
-          max-width: 420px;
-        }
-
-        .btn {
-          height: 140px;
-          border-radius: 12px;
-          font-size: 24px;
-        }
-
-        .price {
-          margin-top: 4px;
-          font-size: 9px;
-        }
-
-        .cancel-link {
-          margin-top: 3px;
-          font-size: 8px;
-        }
-
-        .footer {
-          padding: 5px 14px 6px;
-        }
-
-        .footer p {
-          max-width: 650px;
-          font-size: 7px;
-          line-height: 1.25;
-        }
-      }
-
-      @media screen and (orientation: landscape) and (max-height: 390px) {
-        .header {
-          height: 38px;
-          padding: 5px 14px;
-        }
-
-        .mts-logo-img {
-          height: 18px;
-        }
-
-        .magnit-logo-img {
-          height: 20px;
-        }
-
-        .premium-label {
-          font-size: 8px;
-          padding: 2px 6px;
-        }
-
-        .premium-word {
-          padding: 3px 7px;
-          font-size: 8px;
-        }
-
-        .content {
-          padding: 3px 14px;
-        }
-
-        .eyebrow {
-          display: none;
-        }
-
-        h1 {
-          font-size: 21px;
-          line-height: 0.9;
-        }
-
-        .description {
-          margin-top: 4px;
-          font-size: 8px;
-        }
-
-        .visual {
-          height: 82px;
-          margin: 4px auto;
-          width: min(470px, 78vw);
-        }
-
-        .visual::before {
-          width: 76px;
-          height: 76px;
-        }
-
-        .number {
-          font-size: 37px;
-        }
-
-        .center-label {
-          width: 85px;
-        }
-
-        .center-label .small {
-          font-size: 6px;
-        }
-
-        .center-label .main {
-          font-size: 9px;
-        }
-
-        .benefit {
-          padding: 4px 6px;
-          font-size: 7px;
-          border-radius: 7px;
-        }
-
-        .benefit .icon {
-          width: 17px;
-          height: 17px;
-          border-radius: 5px;
-        }
-
-        .benefit .icon svg {
-          width: 9px;
-          height: 9px;
-        }
-
-        .b1 {
-          top: 0;
-        }
-
-        .b2 {
-          top: 8px;
-        }
-
-        .b3 {
-          bottom: 0;
-        }
-
-        .b4 {
-          bottom: 5px;
-        }
-
-        .btn {
-          height: 100px;
-          border-radius: 10px;
-          font-size: 20px;
-        }
-
-        .price {
-          margin-top: 3px;
-          font-size: 8px;
-        }
-
-        .cancel-link {
-          display: none;
-        }
-
-        .footer {
-          padding: 4px 10px 5px;
-        }
-
-        .footer p {
-          font-size: 6px;
-          line-height: 1.2;
-        }
-      }
-    </style>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta content="IE=edge" http-equiv="X-UA-Compatible" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>{{title}}</title>
+    <link rel="icon" href="images/favicon.png" type="image/png" />
+    <script src="js/index.js" defer></script>
+    <link href="css/style.css" rel="stylesheet" />
   </head>
-
   <body>
-    <div class="wrap">
+    <div class="container" id="main-container">
       <header class="header">
-        <img src="assets/image/logomts.svg" alt="МТС" class="mts-logo-img" />
-
-        <div class="header-center">
-          <img
-            src="assets/image/magnit-plus-vertical-logo.svg"
-            alt="Магнит Плюс"
-            class="magnit-logo-img"
-          />
-          <span class="premium-label">Премиум</span>
-        </div>
-
-        <span class="premium-word">18+</span>
+        <p class="header__text">
+          {{pre-header}} Нажатием кнопки «Смотреть», вы осуществляете подписку на доступ к
+          Интернет-ресурсу
+          <a href="http://{{servicelink}}" class="link">http://{{servicelink}}</a>, подтверждаете,
+          что Вам уже есть 18 лет, и свое ознакомление и согласие с
+          <a href="{{conditions}}" class="link">условиями</a> его предоставления. Стоимость
+          подписки: {{cost}} р. в сутки (с НДС).
+        </p>
       </header>
 
-      <main class="content">
-        <div class="eyebrow">Только для взрослых</div>
+      <main class="main">
+        <div class="player-area" id="player-area">
+          <div class="video-title">{{servicelink}} - Горячая сцена #24</div>
 
-        <h1>
-          <span class="gold">Больше.</span>
-          <span>Ярче.</span>
-          <span class="gold">Горячее.</span>
-        </h1>
-
-        <p class="description">
-          Больше возможностей с <strong>Магнит Плюс</strong> и <strong>Защитником</strong>.<br />
-          До 50% кэшбэка и 400 бонусов в среднем каждый месяц.
-        </p>
-
-        <div class="visual">
-          <div class="number">18+</div>
-
-          <div class="center-label">
-            <span class="small">10 категорий</span>
-            <span class="main">Больше удовольствия</span>
+          <div class="video-preview">
+            <div class="age-badge-top">18+</div>
           </div>
 
-          <div class="benefit b1">
-            <div class="icon">
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <circle cx="7.5" cy="15.5" r="5.5" />
-                <path d="M21 2l-9.6 9.6" />
-                <path d="M15.5 7.5l3 3L22 7l-3-3" />
-              </svg>
+          <div class="fake-progress-bar">
+            <div class="fake-progress"></div>
+          </div>
+
+          <div class="fake-player-controls">
+            <div class="fake-controls-left">
+              <span class="control-icon">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+                </svg>
+              </span>
+              <span class="fake-time">0:24 / 12:18</span>
             </div>
-            Горячий контент
+
+            <div class="fake-controls-right">
+              <span class="control-icon">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"
+                  />
+                </svg>
+              </span>
+              <span class="control-icon">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"
+                  />
+                </svg>
+              </span>
+            </div>
           </div>
 
-          <div class="benefit b2">
-            <div class="icon">
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path
-                  d="M12 3l2.8 5.7 6.2.9-4.5 4.4 1.1 6.2L12 17.3 6.4 20.2l1.1-6.2L3 9.6l6.2-.9L12 3z"
-                />
-              </svg>
-            </div>
-            Премиум-доступ
-          </div>
+          <button
+            class="subscription-button"
+            id="subscription-button"
+            disabled
+            data-href="#btnLink"
+          >
+            <span class="button__inner">
+              <div class="agreement" id="agreement">
+                <div class="flex-center">
+                  <div class="agreement__check-wrapper">
+                    <div class="agreement__check-box" id="check-box"></div>
+                  </div>
+                  <div class="agreement__text">
+                    Я согласен с
+                    <a href="{{conditions}}" class="rules-link">правилами</a>
+                    услуги и мне есть 18 лет
+                  </div>
+                </div>
+              </div>
 
-          <div class="benefit b3">
-            <div class="icon">
-              <img src="assets/image/gold-heart_1_11zon.webp" alt="Золотое сердце" />
-            </div>
-            До 50% кэшбэка
-          </div>
-
-          <div class="benefit b4">
-            <div class="icon">
-              <img src="assets/image/mplus-3_2_11zon.webp" alt="3D логотип M+" />
-            </div>
-            400 бонусов в среднем
-          </div>
+              <span class="button-activate" id="button-activate">
+                <span class="button-content">
+                  <svg class="button-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                  <span class="button-text">Смотреть</span>
+                </span>
+              </span>
+            </span>
+          </button>
         </div>
 
-        <div class="cta">
-          <a href="{offer_link}" class="btn">Получить доступ</a>
-          <div class="price">159 руб. в месяц, списание с мобильного счета</div>
+        <div class="reject-link-wrapper">
+          <a href="{{reject}}" class="link reject-link">Назад</a>
         </div>
       </main>
 
       <footer class="footer">
-        <p>
-          18+. Нажимая на кнопку «Получить доступ», Вы соглашаетесь с подключением подписки «Магнит
-          Плюс Премиум» и условиями сервиса. Услугу предоставляет ПАО «МТС».
+        <p class="footer__text">
+          Подписка на доступ к Интернет-ресурсу
+          <a href="http://{{servicelink}}" class="link">http://{{servicelink}}</a>. Управление
+          услугой в <strong>{{lk-user-mts}}</strong> и в приложении
+          <span class="no-wrap">{{app-link}}</span>.
         </p>
       </footer>
     </div>
