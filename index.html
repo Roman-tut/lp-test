@@ -49,7 +49,6 @@
         padding-top: 10px;
         padding-bottom: 20px;
       }
-
       .header__container {
         display: flex;
         justify-content: center;
@@ -57,43 +56,33 @@
         gap: 20px;
         position: relative;
       }
-
-      .header__danger {
-        position: absolute;
-        right: 20px;
-        top: 5px;
-        display: flex;
-        align-items: center;
-        gap: 5px;
-        color: #a4a4a473;
-        font-weight: 600;
-      }
-
       .header__name {
-        position: absolute;
-        left: 30px;
-        top: 5px;
-        display: flex;
-        font-weight: 400;
-        align-items: center;
-        color: #a4a4a462;
-      }
-
-      .header__title {
-        color: #a4a4a49c;
         font-weight: 700;
+        color: #cecece;
+      }
+      .header__danger {
+        color: #cecece;
+      }
+      .header__logo {
+        max-width: 142px;
+      }
+      @media screen and (orientation: landscape) and (max-height: 500px) {
+        .header__logo {
+          position: absolute;
+          left: 5%;
+        }
       }
 
       .footer__container {
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 0.5rem;
+        gap: 0.2rem;
         margin-bottom: 10px;
       }
       .footer-link {
-        color: #ffffff87;
-        font-size: 14px;
+        color: #ffffff9b;
+        font-size: 12px;
         text-decoration: underline;
       }
 
@@ -143,8 +132,8 @@
         height: 150px;
         padding: 1rem 1.5rem;
         border: none;
-        border-radius: 100px;
-        background: linear-gradient(135deg, #1e90ff, #0077be, #004c8c);
+        border-radius: 12px;
+        background: linear-gradient(135deg, #00b09b, #96c93d);
         background-size: 200% 200%;
         color: #ffffff;
         font-size: 26px;
@@ -153,17 +142,17 @@
         text-align: center;
         text-decoration: none;
         cursor: pointer;
-        box-shadow: 0 10px 30px rgba(30, 144, 255, 0.4);
+        box-shadow: 0 10px 30px rgba(0, 176, 155, 0.4);
         transition: all 0.3s ease;
         animation: gradientShift 3s ease infinite;
       }
       .foo:hover {
         transform: translateY(-2px);
-        box-shadow: 0 15px 35px rgba(30, 144, 255, 0.5);
+        box-shadow: 0 15px 35px rgba(0, 176, 155, 0.5);
       }
       .foo:active {
         transform: scale(0.95);
-        box-shadow: 0 5px 15px rgba(30, 144, 255, 0.6);
+        box-shadow: 0 5px 15px rgba(0, 176, 155, 0.6);
       }
       @keyframes gradientShift {
         0% {
@@ -178,13 +167,13 @@
       }
 
       .description {
-        opacity: 0.2;
         color: #ffffff;
+        opacity: 0.2;
         text-align: center;
         font-size: 10px;
         font-style: normal;
-        font-weight: 400;
-        line-height: normal;
+        font-weight: 300;
+        line-height: 1.4;
         text-wrap: balance;
       }
     </style>
@@ -193,7 +182,7 @@
     <div class="wrapper">
       <header class="header">
         <div class="container header__container">
-          <div class="header__name"><span class="header__title">Астро-</span>Портал</div>
+          <div class="header__name">Астро-Портал</div>
           <div class="header__danger">18+</div>
         </div>
       </header>
@@ -201,11 +190,14 @@
         <div class="bg">
           <div class="container">
             <div class="content">
-              <div class="btn-box"><button class="foo">Подключить</button></div>
+              <div class="btn-box">
+                <button class="foo">Подключить</button>
+              </div>
               <p class="description">
-                Узнайте, что приготовили вам звёзды. Подключите подписку всего за
-                <span class="price">100 ₸ /день</span> и получайте ежедневные астро-прогнозы и
-                персональные подсказки — ваш личный путеводитель по судьбе.
+                Узнайте, что приготовили вам звёзды. Одна подписка — четыре способа узнать себя:
+                гороскопы на каждый день, натальная карта, мудрость Таро и совместимость знаков. Ваш
+                личный путеводитель по судьбе.<br />
+                <span class="price">100 ₸ /день</span>
               </p>
             </div>
           </div>
