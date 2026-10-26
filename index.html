@@ -1,873 +1,194 @@
 <!doctype html>
-<html lang="ru">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1"
-    />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <meta name="format-detection" content="telephone=no" />
-    <meta name="theme-color" content="#16181D" />
-    <title>Kaspersky Plus и Защитник</title>
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-
-      :root {
-        --red: #ff0032;
-        --bar: #16181d;
-        --ink: #1f1f1f;
-        --muted: #8a8a8a;
-        --line: #e6e6e6;
-
-        --btn-h: clamp(94px, 17.5vh, 162px);
-        --btn-h: clamp(94px, 17.5dvh, 162px);
-        --btn-fs: clamp(27px, 7.4vw, 36px);
-        --btn-r: 20px;
-        --gap: 1rem;
-        --feed-max: clamp(90px, 27vh, 240px);
-        --feed-max: clamp(90px, 27dvh, 240px);
-        --thumb-w: 62px;
-        --thumb-h: 52px;
-        --blur: 2.4px;
-      }
-
-      html {
-        -webkit-text-size-adjust: 100%;
-        text-size-adjust: 100%;
-        background: #fff;
-      }
-
-      body {
-        font-family: sans-serif;
-        background: #fff;
-        -webkit-tap-highlight-color: transparent;
-        overflow-x: hidden;
-      }
-
-      .wrapper {
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
-        min-height: 100dvh;
-        max-height: 100dvh;
-        background: #fff;
-      }
-
-      .container {
-        max-width: 390px;
-        width: 100%;
-        margin: 0 auto;
-        padding: 0 15px;
-      }
-
-      @media (max-height: 827px) {
-        .container {
-          padding: 0 18px;
-        }
-      }
-
-      .topbar {
-        flex: 0 0 auto;
-        background: var(--bar);
-        padding: 12px 0 14px;
-      }
-
-      .topbar__row {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        min-width: 0;
-      }
-
-      .burger {
-        flex: 0 0 auto;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        gap: 4px;
-        width: 26px;
-      }
-
-      .burger i {
-        display: block;
-        height: 3px;
-        border-radius: 2px;
-        background: #fff;
-      }
-
-      .logo {
-        flex: 0 0 auto;
-        display: block;
-        width: 32px;
-        height: 32px;
-
-        object-fit: contain;
-      }
-
-      .nav {
-        flex: 1 1 auto;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        min-width: 0;
-        overflow: hidden;
-      }
-
-      .nav span {
-        color: rgba(255, 255, 255, 0.72);
-        font-size: 14px;
-        line-height: 1.2;
-        white-space: nowrap;
-      }
-
-      .nav span.is-active {
-        color: #fff;
-        font-weight: 700;
-      }
-
-      .age {
-        flex: 0 0 auto;
-        margin-left: auto;
-        color: rgba(255, 255, 255, 0.9);
-        font-size: 13px;
-        font-weight: 600;
-        line-height: 1.2;
-        white-space: nowrap;
-      }
-
-      @media (max-width: 374px) {
-        .nav span:last-child {
-          display: none;
-        }
-      }
-
-      .search {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        height: 40px;
-        margin-top: 12px;
-        padding: 0 12px;
-        border-radius: 8px;
-        background: #fff;
-      }
-
-      .search svg {
-        flex: 0 0 auto;
-        width: 20px;
-        height: 20px;
-        display: block;
-      }
-
-      .search__text {
-        flex: 1 1 auto;
-        min-width: 0;
-        color: #9b9b9b;
-        font-size: 14px;
-        line-height: 1.2;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-
-      .main {
-        flex: 1 1 auto;
-        min-height: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        overflow: hidden;
-      }
-
-      .content {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: var(--gap);
-        width: 100%;
-        padding: var(--gap) 0;
-      }
-
-      .feed {
-        flex: 0 1 auto;
-        min-height: 0;
-        max-height: var(--feed-max);
-        width: 100%;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 14px 12px;
-        overflow: hidden;
-
-        pointer-events: none;
-        -webkit-user-select: none;
-        user-select: none;
-
-        -webkit-mask-image: linear-gradient(to bottom, #000 78%, transparent 100%);
-        mask-image: linear-gradient(to bottom, #000 78%, transparent 100%);
-      }
-
-      .card {
-        display: flex;
-        align-items: flex-start;
-        gap: 8px;
-        min-width: 0;
-
-        filter: blur(var(--blur));
-        -webkit-filter: blur(var(--blur));
-      }
-
-      .card--sharp {
-        --blur: 1.8px;
-      }
-
-      .card__thumb {
-        flex: 0 0 auto;
-        width: var(--thumb-w);
-        height: var(--thumb-h);
-        border-radius: 4px;
-        overflow: hidden;
-        background: #ededed;
-      }
-
-      .card__thumb img {
-        display: block;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-
-      .card__text {
-        min-width: 0;
-      }
-
-      .card__tag {
-        display: block;
-        margin-bottom: 3px;
-        color: var(--red);
-        font-size: 8px;
-        font-weight: 700;
-        letter-spacing: 0.04em;
-        text-transform: uppercase;
-      }
-
-      .card__title {
-        color: #3a3a3a;
-        font-size: 11px;
-        font-weight: 600;
-        line-height: 1.25;
-      }
-
-      .card--wide {
-        grid-column: 1 / -1;
-      }
-
-      .card--wide .card__thumb {
-        width: calc(var(--thumb-w) + 26px);
-        height: calc(var(--thumb-h) + 8px);
-      }
-
-      .content > .subtitle,
-      .content > .main__link,
-      .content > .description {
-        flex: 0 0 auto;
-      }
-
-      .subtitle {
-        color: var(--ink);
-        text-align: center;
-        font-style: normal;
-        font-weight: 700;
-        line-height: 1.25;
-        font-size: 1.3rem;
-        max-width: 100%;
-        text-wrap: balance;
-      }
-
-      .subtitle span {
-        color: var(--red);
-      }
-
-      @media screen and (max-height: 667px) {
-        .subtitle {
-          font-size: 1.15rem;
-        }
-      }
-
-      @media (max-height: 600px) {
-        .subtitle {
-          font-size: 17px;
-        }
-      }
-
-      .main__link {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        min-height: var(--btn-h);
-        padding: 0.75rem 1rem;
-        border-radius: var(--btn-r);
-        color: #fff;
-        text-align: center;
-        font-size: var(--btn-fs);
-        font-weight: 700;
-        line-height: 1.1;
-        text-decoration: none;
-        background: linear-gradient(135deg, #ff0032 0%, #e4002c 50%, #cc0026 100%);
-        background-size: 200% 200%;
-        box-shadow: 0 10px 30px rgba(255, 0, 50, 0.3);
-        transition:
-          transform 0.3s ease,
-          box-shadow 0.3s ease;
-      }
-
-      .main__link:active {
-        transform: scale(0.97);
-        box-shadow: 0 5px 15px rgba(255, 0, 50, 0.45);
-      }
-
-      @media (hover: hover) {
-        .main__link:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 15px 35px rgba(255, 0, 50, 0.4);
-        }
-      }
-
-      .description {
-        color: var(--muted);
-        text-align: center;
-        font-size: 14px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-        text-wrap: balance;
-      }
-
-      .footer {
-        flex: 0 0 auto;
-        padding: 10px 0;
-      }
-
-      .footer__container {
-        max-width: 94%;
-        text-align: center;
-      }
-
-      @media screen and (max-height: 375px) and (orientation: landscape) {
-        .footer__container {
-          max-width: 100%;
-        }
-      }
-
-      .footer__container p {
-        text-align: center;
-        font-family: sans-serif;
-        font-size: 14px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-        color: #a0a0a0;
-      }
-
-      .footer__container p a {
-        color: inherit;
-        text-decoration-line: underline;
-      }
-
-      @keyframes fadeInUp {
-        from {
-          opacity: 0;
-          transform: translateY(30px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-        }
-        to {
-          opacity: 1;
-        }
-      }
-
-      @keyframes gradientShift {
-        0%,
-        100% {
-          background-position: 0% 50%;
-        }
-        50% {
-          background-position: 100% 50%;
-        }
-      }
-
-      .content > * {
-        opacity: 0;
-        animation: fadeInUp 0.6s ease-out forwards;
-      }
-
-      .content > .main__link {
-        animation:
-          fadeInUp 0.6s ease-out forwards,
-          gradientShift 3s ease infinite;
-      }
-
-      .content > *:nth-child(1) {
-        animation-delay: 0.1s;
-      }
-
-      .content > *:nth-child(2) {
-        animation-delay: 0.3s;
-      }
-
-      .content > *:nth-child(3) {
-        animation-delay: 0.5s;
-      }
-
-      .content > *:nth-child(4) {
-        animation-delay: 0.7s;
-      }
-
-      .content > *:nth-child(5) {
-        animation-delay: 0.9s;
-      }
-
-      .content > *:nth-child(6) {
-        animation-delay: 1.1s;
-      }
-
-      .content > *:nth-child(7) {
-        animation-delay: 1.3s;
-      }
-
-      .footer__container p {
-        opacity: 0;
-        animation: fadeIn 1s ease-out 1.5s forwards;
-      }
-
-      @media (prefers-reduced-motion: reduce) {
-        .content > *,
-        .content > .main__link,
-        .footer__container p {
-          animation: none;
-          opacity: 1;
-          transform: none;
-        }
-      }
-
-      @media (max-height: 780px) {
-        :root {
-          --gap: 0.8rem;
-          --btn-h: clamp(80px, 14.5vh, 124px);
-          --btn-h: clamp(80px, 14.5dvh, 124px);
-        }
-
-        .feed .card:nth-child(n + 5) {
-          display: none;
-        }
-      }
-
-      @media (max-height: 680px) {
-        :root {
-          --gap: 0.65rem;
-          --btn-h: clamp(72px, 13.5vh, 102px);
-          --btn-h: clamp(72px, 13.5dvh, 102px);
-          --btn-fs: clamp(24px, 6.6vw, 31px);
-          --thumb-w: 56px;
-          --thumb-h: 46px;
-        }
-
-        .topbar {
-          padding: 10px 0 12px;
-        }
-
-        .search {
-          height: 36px;
-          margin-top: 10px;
-        }
-
-        .feed {
-          gap: 10px 12px;
-        }
-      }
-
-      @media screen and (orientation: portrait) and (max-height: 620px) {
-        :root {
-          --gap: 0.5rem;
-          --btn-h: clamp(66px, 13vh, 88px);
-          --btn-h: clamp(66px, 13dvh, 88px);
-        }
-
-        .feed .card:nth-child(n + 3) {
-          display: none;
-        }
-
-        .topbar {
-          padding: 8px 0 10px;
-        }
-
-        .search {
-          display: none;
-        }
-
-        .footer__container p {
-          font-size: 12px;
-        }
-      }
-
-      @media screen and (orientation: portrait) and (max-height: 520px) {
-        :root {
-          --btn-h: clamp(54px, 11vh, 66px);
-          --btn-h: clamp(54px, 11dvh, 66px);
-        }
-
-        .feed {
-          display: none;
-        }
-      }
-
-      @media screen and (orientation: landscape) and (max-height: 500px) {
-        :root {
-          --gap: 0.4rem;
-          --btn-h: clamp(48px, 19vh, 70px);
-          --btn-h: clamp(48px, 19dvh, 70px);
-          --btn-fs: clamp(20px, 4.9vh, 26px);
-          --thumb-w: 52px;
-          --thumb-h: 42px;
-        }
-
-        .topbar {
-          padding: 6px 0;
-        }
-
-        .search {
-          display: none;
-        }
-
-        .content {
-          padding: 0.25rem 0;
-        }
-
-        .logo {
-          width: 26px;
-          height: 26px;
-          border-radius: 6px;
-        }
-
-        .feed {
-          gap: 8px 12px;
-        }
-
-        .feed .card:nth-child(n + 3) {
-          display: none;
-        }
-
-        .main__link {
-          width: 80vw;
-          max-width: none;
-          padding: 0.5rem 1rem;
-        }
-
-        .description {
-          font-size: 13px;
-        }
-
-        .footer {
-          padding: 6px 0;
-        }
-
-        .footer__container p {
-          font-size: 11px;
-        }
-      }
-
-      @media screen and (min-width: 600px) and (min-height: 600px) {
-        :root {
-          --gap: 1.25rem;
-          --btn-h: clamp(92px, 11vh, 120px);
-          --btn-h: clamp(92px, 11dvh, 120px);
-          --btn-fs: clamp(28px, 3.4vw, 34px);
-          --btn-r: 22px;
-          --feed-max: clamp(150px, 26vh, 300px);
-          --feed-max: clamp(150px, 26dvh, 300px);
-          --thumb-w: 104px;
-          --thumb-h: 78px;
-
-          --blur: 3px;
-        }
-
-        .container {
-          max-width: 680px;
-          padding: 0 28px;
-        }
-
-        .topbar {
-          padding: 16px 0 18px;
-        }
-
-        .logo {
-          width: 38px;
-          height: 38px;
-        }
-
-        .nav {
-          gap: 18px;
-        }
-
-        .nav span {
-          font-size: 16px;
-        }
-
-        .age {
-          font-size: 15px;
-        }
-
-        .search {
-          height: 46px;
-          margin-top: 16px;
-          padding: 0 16px;
-        }
-
-        .search svg {
-          width: 22px;
-          height: 22px;
-        }
-
-        .search__text {
-          font-size: 16px;
-        }
-
-        .feed {
-          gap: 20px 22px;
-        }
-
-        .card {
-          gap: 12px;
-        }
-
-        .card--sharp {
-          --blur: 2.3px;
-        }
-
-        .card__thumb {
-          border-radius: 6px;
-        }
-
-        .card__tag {
-          margin-bottom: 5px;
-          font-size: 11px;
-        }
-
-        .card__title {
-          font-size: 15px;
-        }
-
-        .card--wide .card__thumb {
-          width: calc(var(--thumb-w) + 44px);
-          height: calc(var(--thumb-h) + 12px);
-        }
-
-        .subtitle {
-          font-size: 1.9rem;
-          max-width: 90%;
-        }
-
-        .main__link {
-          max-width: 440px;
-          box-shadow: 0 14px 38px rgba(255, 0, 50, 0.28);
-        }
-
-        .description {
-          font-size: 16px;
-        }
-
-        .footer {
-          padding: 16px 0;
-        }
-
-        .footer__container {
-          max-width: 620px;
-        }
-
-        .footer__container p {
-          font-size: 14px;
-        }
-      }
-
-      @media screen and (min-width: 1024px) and (min-height: 600px) {
-        :root {
-          --gap: 1.4rem;
-          --btn-h: clamp(96px, 12vh, 132px);
-          --btn-h: clamp(96px, 12dvh, 132px);
-          --btn-fs: clamp(30px, 2.2vw, 36px);
-          --feed-max: clamp(170px, 28vh, 340px);
-          --feed-max: clamp(170px, 28dvh, 340px);
-          --thumb-w: 118px;
-          --thumb-h: 86px;
-          --blur: 3.2px;
-        }
-
-        .container {
-          max-width: 760px;
-          padding: 0 32px;
-        }
-
-        .subtitle {
-          font-size: 2.15rem;
-        }
-
-        .card__title {
-          font-size: 16px;
-        }
-
-        .main__link {
-          max-width: 470px;
-        }
-
-        .footer__container {
-          max-width: 660px;
-        }
-      }
-    </style>
+    <title>Портал для взрослых</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=7" />
+    <link rel="stylesheet" href="css/app.css" />
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png" />
+    <script src="js/main.js" defer="defer"></script>
   </head>
-  <body>
-    <div class="wrapper">
-      <header class="topbar">
-        <div class="container">
-          <div class="topbar__row">
-            <span class="burger" aria-hidden="true"><i></i><i></i><i></i></span>
-            <img src="assets/image/logo-mts.svg" class="logo" alt="МТС" />
-            <nav class="nav">
-              <span class="is-active">Видео</span>
-              <span>Лучшее</span>
-              <span>Фото</span>
-              <span>Смотреть</span>
-            </nav>
-            <span class="age">18+</span>
+  <body class="close">
+    <div id="div">
+      <div class="wrapper">
+        <div class="pre-header footer__text">
+          {{pre-header}} Нажатием кнопки «Подключить» вы осуществляете подписку на доступ к услуге
+          "Интернет-подписка" на сайте
+          <a href="http://{{servicelink.1}}">https://{{servicelink.1}}</a>, подтверждаете, что вам
+          уже есть 18 лет, ознакомились и согласны с <a href="{{conditions.1}}">условиями</a> ее
+          предоставления. Стоимость подписки: {{cost.1}}&nbsp;р. в сутки (с НДС).
+        </div>
+        <div class="header">
+          <div class="header__brand">
+            <div class="header__logo">
+              <svg width="26" height="26" viewBox="0 0 24 24">
+                <path
+                  fill="#ffffff"
+                  d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+                />
+                <path fill="#dc3c31" d="M10 8.2v6.2l5-3.1z" />
+              </svg>
+            </div>
+            <div class="header__titles">
+              <div class="header__name">Эротический портал</div>
+              <div class="header__subtitle">Тысячи HD-видео без ограничений</div>
+            </div>
           </div>
-          <div class="search" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="11" cy="11" r="6.5" stroke="#9b9b9b" stroke-width="2" />
-              <path d="M16 16L21 21" stroke="#9b9b9b" stroke-width="2" stroke-linecap="round" />
+
+          <div class="header__age">18+</div>
+        </div>
+
+        <div class="tags">
+          <div class="tag active">
+            <svg class="tag__icon" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z" />
             </svg>
-            <span class="search__text" data-text="searchText"></span>
+            <span>Категории</span>
+          </div>
+
+          <div class="tag">
+            <svg class="tag__icon" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M17.66 11.2c-.23-.3-.51-.56-.77-.82-.67-.6-1.43-1.03-2.07-1.66C13.33 7.26 13 4.85 13.95 3c-.95.23-1.78.75-2.49 1.32-2.59 2.08-3.61 5.75-2.39 8.9.04.1.08.2.08.33 0 .22-.15.42-.35.5-.22.1-.46.04-.64-.12a.83.83 0 01-.22-.31c-.11-.31-.15-.65-.15-.97 0-1.04.33-2.1.89-3.01-.89 1-1.6 2.27-1.95 3.63-.3 1.15-.31 2.37.03 3.52.3 1.05.86 2.05 1.63 2.82C9.8 20.31 11.23 21 12.82 21c3.15 0 5.86-2.3 6.13-5.38.08-.94-.13-1.91-.56-2.78-.17-.34-.4-.65-.73-.84z"
+              />
+            </svg>
+            <span>Горячее</span>
+          </div>
+
+          <div class="tag">
+            <svg class="tag__icon" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M7 2v11h3v9l7-12h-4l4-8z" />
+            </svg>
+            <span>Новое</span>
           </div>
         </div>
-      </header>
-      <main class="main">
-        <div class="container">
-          <div class="content">
-            <div class="feed" aria-hidden="true">
-              <article class="card card--sharp">
-                <div class="card__thumb">
-                  <img
-                    src="assets/image/news-fire-business-center.jpg"
-                    alt="Пожарные тушат горящее здание бизнес-центра"
+
+        <main class="middle-box main">
+          <input class="main__input" type="checkbox" hidden />
+
+          <div class="player">
+            <div class="player__badges">
+              <span class="player__badge player__badge--hd">HD 1080p</span>
+              <span class="player__badge player__badge--time">
+                <svg class="player__badge-icon" viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17a5 5 0 1 1 0-10 5 5 0 0 1 0 10zm0-8a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"
                   />
-                </div>
-                <div class="card__text">
-                  <span class="card__tag">Происшествия</span>
-                  <p class="card__title">Пожар в бизнес-центре: спасатели вывели людей из здания</p>
-                </div>
-              </article>
-              <article class="card">
-                <div class="card__thumb">
-                  <img
-                    src="assets/image/news-economic-forum.jpg"
-                    alt="Выступление участника экономического форума"
-                  />
-                </div>
-                <div class="card__text">
-                  <span class="card__tag">В мире</span>
-                  <p class="card__title">Экономический форум: главные заявления первого дня</p>
-                </div>
-              </article>
-              <article class="card">
-                <div class="card__thumb">
-                  <img
-                    src="assets/image/news-celebrity-couple.jpg"
-                    alt="Влюблённая пара на отдыхе"
-                  />
-                </div>
-                <div class="card__text">
-                  <span class="card__tag">Звёзды</span>
-                  <p class="card__title">
-                    Не скрывают чувств: пара впервые показала совместный отпуск
-                  </p>
-                </div>
-              </article>
-              <article class="card">
-                <div class="card__thumb">
-                  <img
-                    src="assets/image/news-society-event.jpg"
-                    alt="Гостья светского мероприятия крупным планом"
-                  />
-                </div>
-                <div class="card__text">
-                  <span class="card__tag">Светская хроника</span>
-                  <p class="card__title">Образ вечера: что носили гости закрытого показа</p>
-                </div>
-              </article>
-              <article class="card card--wide">
-                <div class="card__thumb">
-                  <img
-                    src="assets/image/news-champions-league.jpg"
-                    alt="Вратарь с мячом Лиги чемпионов"
-                  />
-                </div>
-                <div class="card__text">
-                  <span class="card__tag">Спорт</span>
-                  <p class="card__title">Серия пенальти решила исход матча Лиги чемпионов</p>
-                </div>
-              </article>
+                </svg>
+                283K
+              </span>
             </div>
 
-            <p class="subtitle">
-              Читайте свежие новости под защитой <span>Kaspersky Plus и Защитник</span>
-            </p>
+            <div class="player__controls">
+              <div class="player__ctrl">
+                <svg class="player__ctrl-svg" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+              </div>
 
-            <a href="#" class="main__link" data-text="btnText"></a>
-            <p class="description">179 руб в месяц, cписание с мобильного счета</p>
+              <div class="player__progressbar">
+                <div class="player__progressbar-fill"></div>
+              </div>
+
+              <span class="player__time">14:36</span>
+
+              <div class="player__ctrl">
+                <svg class="player__ctrl-svg" viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0014 7.97v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"
+                  />
+                </svg>
+              </div>
+
+              <div class="player__volume"><span></span></div>
+
+              <div class="player__ctrl">
+                <svg class="player__ctrl-svg" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z" />
+                </svg>
+              </div>
+            </div>
+
+            <div class="btn-box">
+              <button
+                class="button player__button"
+                data-href="#btnLink"
+                data-btn="chcbox"
+                data-chc="bbox"
+              >
+                <span class="button__body">
+                  <div class="agreement button__agreement" data-agreement>
+                    <div class="agreement__wrapper">
+                      <div class="agreement__checkbox-wrapper">
+                        <div class="agreement__checkbox" data-checkbox></div>
+                      </div>
+                      <div class="agreement__text">
+                        Я согласен с
+                        <span data-conditions-href="{{conditions}}">правилами</span> ресурса и мне
+                        есть 18 лет
+                      </div>
+                    </div>
+                  </div>
+                  <span class="button__main" data-btntext>
+                    <svg width="50" height="50" viewBox="0 0 24 24" fill="#ffffff">
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                    <span class="button__text">
+                      Подключить
+                      <span class="button__text-sub">и смотреть</span>
+                    </span>
+                  </span>
+                </span>
+              </button>
+            </div>
+
+            <div class="loading"><span class="loaderItem"></span></div>
+            <div class="player-bar"></div>
           </div>
+
+          <div class="meta">
+            <div class="meta__head">
+              <div class="meta__title">Блондинка в чулках после уроков</div>
+              <div class="meta__views">
+                <svg class="meta__views-icon" viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17a5 5 0 1 1 0-10 5 5 0 0 1 0 10zm0-8a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"
+                  />
+                </svg>
+                283K
+              </div>
+            </div>
+
+            <div class="meta__tags">
+              <svg class="meta__tag-icon" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M21.41 11.58l-9-9A2 2 0 0 0 11 2H4a2 2 0 0 0-2 2v7c0 .55.22 1.05.59 1.42l9 9c.36.36.86.58 1.41.58s1.05-.22 1.41-.59l7-7c.37-.36.59-.86.59-1.41s-.23-1.06-.59-1.42zM5.5 7A1.5 1.5 0 1 1 7 5.5 1.5 1.5 0 0 1 5.5 7z"
+                />
+              </svg>
+              <span class="meta__tag">блондинки</span>
+              <span class="meta__tag">красивое бельё</span>
+              <span class="meta__tag">учительница</span>
+              <span class="meta__tag">чулки</span>
+              <span class="meta__tag">соло</span>
+            </div>
+          </div>
+        </main>
+
+        <div class="footer__link-wrapper">
+          <footer class="footer footer__agree">
+            <a class="footer__link-back" href="{{reject}}">Выйти</a>
+            <div class="container footer__container">
+              <p class="footer__text">
+                Подписка на доступ к услуге "Интернет-подписка"
+                <a href="http://{{servicelink.1}}">https://{{servicelink.1}}</a>. Управление услугой
+                в {{lk-user-a1}} и в приложении {{app-link}}.
+              </p>
+            </div>
+          </footer>
         </div>
-      </main>
-      <footer class="footer">
-        <div class="container footer__container">
-          <p>
-            18+. Нажимая на кнопку «<span data-text="btnText"></span>», Вы соглашаетесь с
-            подключением подписки "Kaspersky Plus на 1 устройство и Защитник" и условиями сервиса.
-            Услугу предоставляет ПАО «МТС»
-          </p>
-        </div>
-      </footer>
+      </div>
     </div>
-    <script>
-      const vars = {
-        btnText: 'Читать',
-        searchText: 'Серия пенальти: чем закончился матч',
-      };
-      document
-        .querySelectorAll('[data-text]')
-        .forEach((el) => (el.textContent = vars[el.dataset.text]));
-
-      const downloadBtn = document.querySelector('.main__link');
-
-      downloadBtn.addEventListener('click', function (e) {
-        e.preventDefault();
-
-        this.textContent = 'Загрузка...';
-        this.style.background = 'linear-gradient(135deg, #C4102A 0%, #A80D22 50%, #8C0A1B 100%)';
-        this.style.animation = 'none';
-        this.style.opacity = '1';
-      });
-    </script>
   </body>
 </html>
