@@ -218,9 +218,9 @@ body {
   .wrapper {
     padding: 0 10vw;
     background:
-      linear-gradient(90deg, var(--ink) 0%, rgba(11, 9, 8, 0) 38%, rgba(11, 9, 8, 0) 90%, var(--ink) 100%) no-repeat right 6vw top / 124.5vh 70vh,
-      linear-gradient(0deg, var(--ink) 0%, rgba(11, 9, 8, 0) 45%) no-repeat right 6vw top / 124.5vh 70vh,
-      url("bg-wide.jpg") no-repeat right 6vw top / 124.45vh 70vh,
+      linear-gradient(90deg, var(--ink) 4%, rgba(11, 9, 8, 0) 40%, rgba(11, 9, 8, 0) 88%, var(--ink) 98%) no-repeat right calc(6vw - 3px) top / 129vh 71vh,
+      linear-gradient(0deg, var(--ink) 0%, rgba(11, 9, 8, 0) 45%) no-repeat right calc(6vw - 3px) top / 129vh 71vh,
+      url("bg-wide.jpg") no-repeat right 6vw top / 124.4vh 70vh,
       var(--ink);
   }
   .main {
@@ -247,23 +247,79 @@ body {
   }
 }
 
-/* телефон боком */
-@media (orientation: landscape) and (max-height: 430px) {
+/* телефон боком: кнопка 70%, всё в один экран.
+   svh — высота с учётом панелей браузера; логотип сжимается, если места мало */
+@media (orientation: landscape) and (max-height: 500px) {
+  .wrapper {
+    height: 100vh;
+    height: 100svh;
+    min-height: 0;
+    padding: 0 15vw;
+  }
+  .header {
+    flex: none;
+    padding-top: 6px;
+  }
   .header__logo {
-    height: 26px;
+    height: 24px;
+  }
+  .header__age {
+    padding: 2px 8px;
+    font-size: 12px;
+  }
+  .main {
+    min-height: 0;
+  }
+  .title {
+    flex: 0 1 60px;
+    height: auto;
+    min-height: 0;
+    max-width: 130px;
+    margin-bottom: 4px;
+    object-fit: contain;
+    object-position: left bottom;
+  }
+  .slogan {
+    flex: none;
+    font-size: 18px;
+  }
+  .steps,
+  .footer {
+    flex: none;
   }
   .btn {
-    margin-top: 8px;
+    height: clamp(60px, 22vh, 100px);
+    height: clamp(60px, 22svh, 100px);
+    margin-top: 6px;
+    font-size: 25px;
   }
   .note {
-    margin-top: 5px;
-    font-size: 11px;
+    margin-top: 4px;
+    font-size: 10px;
+    line-height: 1.15;
   }
   .cancel {
-    padding: 2px 16px;
-    font-size: 13px;
+    padding: 1px 16px;
+    font-size: 12px;
   }
   .footer {
-    padding: 3px 0 6px;
+    width: auto;
+    margin: 0 -10vw;
+    padding: 2px 0 4px;
+  }
+  .terms {
+    font-size: 9px;
+    line-height: 1.2;
+  }
+}
+@supports (height: 1svh) {
+  @media (orientation: landscape) and (max-height: 500px) {
+    .wrapper {
+      background:
+        linear-gradient(90deg, var(--ink) 4%, rgba(11, 9, 8, 0) 40%, rgba(11, 9, 8, 0) 88%, var(--ink) 98%) no-repeat right calc(6vw - 3px) top / 129svh 71svh,
+        linear-gradient(0deg, var(--ink) 0%, rgba(11, 9, 8, 0) 45%) no-repeat right calc(6vw - 3px) top / 129svh 71svh,
+        url("bg-wide.jpg") no-repeat right 6vw top / 124.4svh 70svh,
+        var(--ink);
+    }
   }
 }
