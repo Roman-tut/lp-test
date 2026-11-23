@@ -213,62 +213,57 @@ body {
   }
 }
 
-/* ---------- альбомная и десктоп: текст слева, герои справа ---------- */
+/* ---------- альбомная: слева название, справа герои, снизу кнопка на 80% ширины ---------- */
 @media (orientation: landscape) {
   .wrapper {
-    padding: 0 5vw;
+    padding: 0 10vw;
     background:
-      linear-gradient(90deg, var(--ink) 0%, rgba(11, 9, 8, 0.8) 34%, rgba(11, 9, 8, 0) 58%),
-      linear-gradient(0deg, rgba(11, 9, 8, 0.9) 0%, rgba(11, 9, 8, 0) 26%),
-      url("bg-wide.jpg") no-repeat right top / cover,
+      linear-gradient(90deg, var(--ink) 0%, rgba(11, 9, 8, 0) 38%, rgba(11, 9, 8, 0) 90%, var(--ink) 100%) no-repeat right 6vw top / 124.5vh 70vh,
+      linear-gradient(0deg, var(--ink) 0%, rgba(11, 9, 8, 0) 45%) no-repeat right 6vw top / 124.5vh 70vh,
+      url("bg-wide.jpg") no-repeat right 6vw top / 124.45vh 70vh,
       var(--ink);
   }
   .main {
-    justify-content: center;
-    width: 46%;
-    margin: 0;
+    align-items: flex-start;
+    max-width: none;
   }
   .title {
-    height: clamp(44px, 13vh, 90px);
-    margin-bottom: 1.5vh;
+    height: clamp(48px, 17vh, 130px);
   }
   .slogan {
-    font-size: clamp(19px, 5vh, 40px);
+    font-size: clamp(18px, 5.4vh, 40px);
+    text-align: left;
   }
+  /* на альбомной описание скрыто, чтобы кнопка была крупной */
   .lead {
-    font-size: clamp(12px, 2.6vh, 18px);
+    display: none;
   }
   .btn {
     height: clamp(76px, 22vh, 170px);
-    font-size: clamp(22px, 5.2vh, 36px);
-  }
-  .footer {
-    justify-items: start;
+    font-size: clamp(24px, 7vh, 44px);
   }
   .terms {
-    max-width: 760px;
-    text-align: left;
+    max-width: 100%;
   }
 }
 
 /* телефон боком */
 @media (orientation: landscape) and (max-height: 430px) {
-  .lead {
-    display: none;
-  }
-  .title {
-    height: 15vh;
-    margin-bottom: 4px;
-  }
   .header__logo {
     height: 26px;
   }
+  .btn {
+    margin-top: 8px;
+  }
   .note {
     margin-top: 5px;
-    font-size: 10px;
-    white-space: nowrap;
+    font-size: 11px;
   }
   .cancel {
-    padding: 3px 16px;
+    padding: 2px 16px;
+    font-size: 13px;
+  }
+  .footer {
+    padding: 3px 0 6px;
   }
 }
