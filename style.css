@@ -138,7 +138,7 @@ body {
   border-radius: 18px;
   background: var(--red);
   color: #fff;
-  font-size: clamp(24px, 7.4vw, 36px);
+  font-size: clamp(28px, 9.4vw, 48px);
   font-weight: 700;
   line-height: 1;
   text-decoration: none;
@@ -240,7 +240,7 @@ body {
   }
   .btn {
     height: clamp(76px, 22vh, 170px);
-    font-size: clamp(24px, 7vh, 44px);
+    font-size: clamp(28px, 8.6vh, 54px);
   }
   .terms {
     max-width: 100%;
@@ -291,7 +291,7 @@ body {
     height: clamp(60px, 22vh, 100px);
     height: clamp(60px, 22svh, 100px);
     margin-top: 6px;
-    font-size: 25px;
+    font-size: 30px;
   }
   .note {
     margin-top: 4px;
