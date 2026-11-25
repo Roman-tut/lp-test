@@ -49,17 +49,17 @@ body {
   position: relative;
   flex: 1 1 0;
   align-self: stretch;
-  min-height: 190px;
-  margin: 0 calc(50% - 50vw) -22px;
-  overflow: hidden;
+  min-height: 140px;
+  margin: 0 calc(50% - 50vw) 4px;
 }
 .art::before {
   content: "";
   position: absolute;
-  top: 0;
-  bottom: 0;
-  left: -30%;
-  right: -30%;
+  top: -23.3%;
+  top: max(-23.3%, -19vw);
+  left: 0;
+  right: 0;
+  height: 138.07%;
   background: url("poster.jpg") no-repeat center top / contain;
 }
 
@@ -91,16 +91,15 @@ body {
   text-align: center;
 }
 .brand {
-  position: absolute;
-  top: calc(min(100vw, 47vh) * 0.065);
-  top: calc(min(100vw, 45svh) * 0.065);
-  left: 0;
-  right: 0;
+  position: relative;
+  z-index: 1;
+  order: -1;
+  flex: none;
+  padding: clamp(7px, 1.7vh, 26px) 0 clamp(5px, 1.2vh, 14px);
 }
 .brand__logo {
   display: block;
-  width: max(84px, calc(min(100vw, 47vh) * 0.27));
-  width: max(84px, calc(min(100vw, 45svh) * 0.27));
+  width: clamp(84px, 13.5vh, 170px);
   margin: 0 auto;
 }
 .title {
@@ -225,6 +224,17 @@ body {
   color: inherit;
 }
 
+@media (orientation: portrait) and (max-height: 720px) and (max-width: 599px) {
+  .lead {
+    max-width: none;
+    font-size: clamp(9.5px, 2.95vw, 12px);
+    white-space: nowrap;
+  }
+  .btn {
+    height: clamp(88px, 18vh, 190px);
+    height: clamp(88px, 18svh, 190px);
+  }
+}
 @media (orientation: portrait) and (max-height: 520px) {
   .lead {
     display: none;
@@ -263,6 +273,7 @@ body {
     flex-direction: column;
     align-items: center;
     margin-bottom: clamp(5px, 1.2vh, 12px);
+    padding: 0;
   }
   .brand__logo {
     width: clamp(70px, 18vh, 150px);
