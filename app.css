@@ -46,11 +46,20 @@ body {
 }
 
 .art {
+  position: relative;
   flex: 1 1 0;
   align-self: stretch;
   min-height: 190px;
-  margin: 0 -16px -22px;
+  margin: 0 calc(50% - 50vw) -22px;
+  background: url("edge.jpg") no-repeat center top / 100% 100%;
+}
+.art::before {
+  content: "";
+  position: absolute;
+  inset: 0;
   background: url("poster.jpg") no-repeat center top / contain;
+  -webkit-mask: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAABaCAQAAACFgxlAAAAAaUlEQVR42u3OsRFAQAAAwWN04vuv6HUiENADM/aSS3epRqPR/nzr3c5ms9lxf+3jAQICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC/gl4AdFaCLSITxxcAAAAAElFTkSuQmCC") no-repeat center top / contain;
+  mask: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAABaCAQAAACFgxlAAAAAaUlEQVR42u3OsRFAQAAAwWN04vuv6HUiENADM/aSS3epRqPR/nzr3c5ms9lxf+3jAQICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC/gl4AdFaCLSITxxcAAAAAElFTkSuQmCC") no-repeat center top / contain;
 }
 
 .age {
@@ -98,6 +107,7 @@ body {
 }
 
 .slogan {
+  position: relative;
   font-size: clamp(22px, min(7.6vw, 4.6vh), 44px);
   font-weight: 800;
   line-height: 1.1;
@@ -106,6 +116,7 @@ body {
 
 .steps,
 .footer {
+  position: relative;
   display: grid;
   width: 100%;
 }
