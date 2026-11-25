@@ -39,23 +39,33 @@ body {
   min-height: 100vh;
   min-height: 100svh;
   padding: 0 16px;
-  background:
-    linear-gradient(180deg, rgba(11, 9, 8, 0) 24%, rgba(11, 9, 8, 0.85) 43%, var(--ink) 49%),
-    url("bg-wide.jpg") no-repeat right -2vw top / auto 50vh,
-    var(--ink);
+  overflow-x: hidden;
+  background: var(--ink);
 }
 
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-top: clamp(8px, 1.8vh, 16px);
+.art {
+  --w: min(100vw, 47vh);
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: var(--w);
+  height: calc(var(--w) * 1.125);
+  margin-left: calc(var(--w) / -2);
+  background: url("poster.jpg") no-repeat center top / 100% 100%;
 }
-.header__logo {
-  display: block;
-  height: clamp(28px, 5vh, 42px);
+.art::after {
+  content: "";
+  position: absolute;
+  inset: 0 -2px -2px;
+  background:
+    linear-gradient(180deg, rgba(11, 9, 8, 0) 68%, rgba(11, 9, 8, 0.8) 88%, var(--ink) 98%),
+    linear-gradient(90deg, var(--ink) 1%, rgba(11, 9, 8, 0) 9%, rgba(11, 9, 8, 0) 91%, var(--ink) 99%);
 }
-.header__age {
+.age {
+  position: absolute;
+  top: clamp(8px, 1.8vh, 16px);
+  right: 16px;
+  z-index: 1;
   padding: 4px 10px;
   border: 1px solid rgba(255, 255, 255, 0.5);
   border-radius: 99px;
@@ -63,6 +73,10 @@ body {
   line-height: 1.2;
 }
 
+.main,
+.footer {
+  position: relative;
+}
 .main {
   flex: 1 1 auto;
   display: flex;
@@ -74,10 +88,19 @@ body {
   margin: 0 auto;
   text-align: center;
 }
-.title {
+.brand {
+  position: absolute;
+  top: calc(min(100vw, 47vh) * 0.045);
+  left: 0;
+  right: 0;
+}
+.brand__logo {
   display: block;
-  height: clamp(46px, 8.5vh, 84px);
-  margin-bottom: clamp(5px, 1vh, 10px);
+  width: max(84px, calc(min(100vw, 47vh) * 0.27));
+  margin: 0 auto;
+}
+.title {
+  display: none;
 }
 
 .slogan {
@@ -212,15 +235,33 @@ body {
     background:
       linear-gradient(90deg, var(--ink) 4%, rgba(11, 9, 8, 0) 40%, rgba(11, 9, 8, 0) 88%, var(--ink) 98%) no-repeat right calc(6vw - 3px) top / 129vh 71vh,
       linear-gradient(0deg, var(--ink) 0%, rgba(11, 9, 8, 0) 45%) no-repeat right calc(6vw - 3px) top / 129vh 71vh,
-      url("bg-wide.jpg") no-repeat right 6vw top / 124.4vh 70vh,
+      url("banner.jpg") no-repeat right 6vw top / 124.4vh 70vh,
       var(--ink);
   }
   .main {
     align-items: flex-start;
     max-width: none;
   }
+  .art {
+    display: none;
+  }
+  .age {
+    right: 10vw;
+  }
+  .brand {
+    position: static;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: clamp(5px, 1.2vh, 12px);
+  }
+  .brand__logo {
+    width: clamp(70px, 18vh, 150px);
+    margin: 0 0 clamp(4px, 1.2vh, 10px);
+  }
   .title {
-    height: clamp(48px, 17vh, 130px);
+    display: block;
+    height: clamp(48px, 20vh, 150px);
   }
   .slogan {
     font-size: clamp(18px, 5.4vh, 40px);
@@ -245,28 +286,31 @@ body {
     min-height: 0;
     padding: 0 15vw;
   }
-  .header {
-    flex: none;
-    padding-top: 6px;
-  }
-  .header__logo {
-    height: 24px;
-  }
-  .header__age {
+  .age {
+    top: 6px;
+    right: 15vw;
     padding: 2px 8px;
     font-size: 12px;
   }
   .main {
     min-height: 0;
   }
+  .brand {
+    flex: 0 1 100px;
+    min-height: 0;
+    margin-bottom: 4px;
+  }
+  .brand__logo {
+    flex: none;
+    width: 76px;
+    margin-bottom: 3px;
+  }
   .title {
-    flex: 0 1 60px;
+    flex: 0 1 70px;
     height: auto;
     min-height: 0;
-    max-width: 130px;
-    margin-bottom: 4px;
+    max-width: 147px;
     object-fit: contain;
-    object-position: left bottom;
   }
   .slogan {
     flex: none;
@@ -307,7 +351,7 @@ body {
       background:
         linear-gradient(90deg, var(--ink) 4%, rgba(11, 9, 8, 0) 40%, rgba(11, 9, 8, 0) 88%, var(--ink) 98%) no-repeat right calc(6vw - 3px) top / 129svh 71svh,
         linear-gradient(0deg, var(--ink) 0%, rgba(11, 9, 8, 0) 45%) no-repeat right calc(6vw - 3px) top / 129svh 71svh,
-        url("bg-wide.jpg") no-repeat right 6vw top / 124.4svh 70svh,
+        url("banner.jpg") no-repeat right 6vw top / 124.4svh 70svh,
         var(--ink);
     }
   }

@@ -5,19 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="format-detection" content="telephone=no" />
     <title>«Айда!» — смотреть на START</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="app.css" />
   </head>
   <body>
     <input type="checkbox" id="gate" class="gate" autocomplete="off" tabindex="-1" aria-hidden="true" />
 
     <div class="wrapper">
-      <header class="header">
-        <img src="start-logo.png" class="header__logo" alt="Онлайн-кинотеатр START" />
-        <span class="header__age">18+</span>
-      </header>
+      <div class="art"></div>
+      <span class="age">18+</span>
 
       <main class="main">
-        <img src="aida-logo.png" class="title" alt="Айда!" />
+        <div class="brand">
+          <img src="logo.png" class="brand__logo" alt="Онлайн-кинотеатр START" />
+          <img src="title.png" class="title" alt="Айда!" />
+        </div>
 
         <h1 class="slogan">Кто придумал братву?</h1>
 
@@ -35,7 +36,7 @@
             <svg class="btn__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15L20 12z" fill="currentColor" /></svg>
             Смотреть
           </a>
-          <p class="note">Первый день бесплатно, далее 35 ₽ в день</p>
+          <p class="note">35 ₽ в день</p>
           <a href="#<TARIF_NO_URL>" class="cancel">Отмена</a>
         </div>
         </div>
