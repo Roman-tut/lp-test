@@ -58,8 +58,8 @@ body {
   position: absolute;
   inset: 0 -2px -2px;
   background:
-    linear-gradient(180deg, rgba(11, 9, 8, 0) 68%, rgba(11, 9, 8, 0.8) 88%, var(--ink) 98%),
-    linear-gradient(90deg, var(--ink) 1%, rgba(11, 9, 8, 0) 9%, rgba(11, 9, 8, 0) 91%, var(--ink) 99%);
+    linear-gradient(180deg, rgba(11, 9, 8, 0) 74%, rgba(11, 9, 8, 0.8) 92%, var(--ink) 99%),
+    linear-gradient(90deg, var(--ink) 0.5%, rgba(11, 9, 8, 0) 5%, rgba(11, 9, 8, 0) 95%, var(--ink) 99.5%);
 }
 .age {
   position: absolute;
@@ -90,7 +90,7 @@ body {
 }
 .brand {
   position: absolute;
-  top: calc(min(100vw, 47vh) * 0.045);
+  top: calc(min(100vw, 47vh) * 0.065);
   left: 0;
   right: 0;
 }
