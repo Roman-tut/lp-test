@@ -10,18 +10,15 @@
   box-sizing: border-box;
 }
 
-html,
-body {
-  height: 100%;
-}
-
 html {
+  height: 100%;
   background: var(--ink);
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
 }
 
 body {
+  min-height: 100%;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
   color: #fff;
   -webkit-tap-highlight-color: transparent;
@@ -39,30 +36,31 @@ body {
   position: relative;
   display: flex;
   flex-direction: column;
-  min-height: 100%;
+  min-height: 100vh;
+  min-height: 100svh;
   padding: 0 16px;
   overflow-x: hidden;
   background: var(--ink);
 }
 
 .art {
-  position: relative;
-  flex: 1 1 0;
-  align-self: stretch;
-  min-height: 140px;
-  margin: 0 calc(50% - 50vw) 4px;
+  --w: min(100vw, 47vh);
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: var(--w);
+  height: calc(var(--w) * 1.125);
+  margin-left: calc(var(--w) / -2);
+  background: url("poster.jpg") no-repeat center top / 100% 100%;
 }
-.art::before {
+.art::after {
   content: "";
   position: absolute;
-  top: -23.3%;
-  top: max(-23.3%, -19vw);
-  left: 0;
-  right: 0;
-  height: 138.07%;
-  background: url("poster.jpg") no-repeat center top / contain;
+  inset: 0 -2px -2px;
+  background:
+    linear-gradient(180deg, rgba(11, 9, 8, 0) 74%, rgba(11, 9, 8, 0.8) 92%, var(--ink) 99%),
+    linear-gradient(90deg, var(--ink) 0.5%, rgba(11, 9, 8, 0) 5%, rgba(11, 9, 8, 0) 95%, var(--ink) 99.5%);
 }
-
 .age {
   position: absolute;
   top: clamp(8px, 1.8vh, 16px);
@@ -91,15 +89,14 @@ body {
   text-align: center;
 }
 .brand {
-  position: relative;
-  z-index: 1;
-  order: -1;
-  flex: none;
-  padding: clamp(7px, 1.7vh, 26px) 0 clamp(5px, 1.2vh, 14px);
+  position: absolute;
+  top: calc(min(100vw, 47vh) * 0.065);
+  left: 0;
+  right: 0;
 }
 .brand__logo {
   display: block;
-  width: clamp(84px, 13.5vh, 170px);
+  width: max(84px, calc(min(100vw, 47vh) * 0.27));
   margin: 0 auto;
 }
 .title {
@@ -107,7 +104,6 @@ body {
 }
 
 .slogan {
-  position: relative;
   font-size: clamp(22px, min(7.6vw, 4.6vh), 44px);
   font-weight: 800;
   line-height: 1.1;
@@ -116,7 +112,6 @@ body {
 
 .steps,
 .footer {
-  position: relative;
   display: grid;
   width: 100%;
 }
@@ -157,7 +152,6 @@ body {
   gap: 0.4em;
   width: 100%;
   height: clamp(88px, 20vh, 190px);
-  height: clamp(88px, 20svh, 190px);
   margin-top: clamp(10px, 2vh, 20px);
   border-radius: 18px;
   background: var(--red);
@@ -224,17 +218,6 @@ body {
   color: inherit;
 }
 
-@media (orientation: portrait) and (max-height: 720px) and (max-width: 599px) {
-  .lead {
-    max-width: none;
-    font-size: clamp(9.5px, 2.95vw, 12px);
-    white-space: nowrap;
-  }
-  .btn {
-    height: clamp(88px, 18vh, 190px);
-    height: clamp(88px, 18svh, 190px);
-  }
-}
 @media (orientation: portrait) and (max-height: 520px) {
   .lead {
     display: none;
@@ -248,8 +231,6 @@ body {
 
 @media (orientation: landscape) {
   .wrapper {
-    min-height: 100vh;
-    min-height: 100svh;
     padding: 0 10vw;
     background:
       linear-gradient(90deg, var(--ink) 4%, rgba(11, 9, 8, 0) 40%, rgba(11, 9, 8, 0) 88%, var(--ink) 98%) no-repeat right calc(6vw - 3px) top / 129vh 71vh,
@@ -273,7 +254,6 @@ body {
     flex-direction: column;
     align-items: center;
     margin-bottom: clamp(5px, 1.2vh, 12px);
-    padding: 0;
   }
   .brand__logo {
     width: clamp(70px, 18vh, 150px);
