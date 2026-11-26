@@ -45,21 +45,29 @@ body {
 
 .art {
   --w: min(100vw, 47vh);
-  position: absolute;
-  top: 0;
-  left: 50%;
+  position: relative;
+  flex: 0 1 auto;
+  align-self: center;
   width: var(--w);
   height: calc(var(--w) * 1.125);
-  margin-left: calc(var(--w) / -2);
-  background: url("poster.jpg") no-repeat center top / 100% 100%;
+  min-height: 120px;
+  margin-bottom: calc(var(--w) * -0.11);
 }
-.art::after {
-  content: "";
+.art__img {
   position: absolute;
-  inset: 0 -2px -2px;
-  background:
-    linear-gradient(180deg, rgba(11, 9, 8, 0) 74%, rgba(11, 9, 8, 0.8) 92%, var(--ink) 99%),
-    linear-gradient(90deg, var(--ink) 0.5%, rgba(11, 9, 8, 0) 5%, rgba(11, 9, 8, 0) 95%, var(--ink) 99.5%);
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 108.7%;
+  object-fit: contain;
+  object-position: center bottom;
+}
+.art__logo {
+  position: absolute;
+  top: max(6px, calc(100% - var(--w) * 1.06));
+  left: 50%;
+  width: max(84px, calc(var(--w) * 0.27));
+  transform: translateX(-50%);
 }
 .age {
   position: absolute;
@@ -89,21 +97,18 @@ body {
   text-align: center;
 }
 .brand {
-  position: absolute;
-  top: calc(min(100vw, 47vh) * 0.065);
-  left: 0;
-  right: 0;
+  display: none;
 }
 .brand__logo {
   display: block;
-  width: max(84px, calc(min(100vw, 47vh) * 0.27));
-  margin: 0 auto;
 }
 .title {
   display: none;
 }
 
 .slogan {
+  position: relative;
+  z-index: 1;
   font-size: clamp(22px, min(7.6vw, 4.6vh), 44px);
   font-weight: 800;
   line-height: 1.1;
@@ -112,6 +117,8 @@ body {
 
 .steps,
 .footer {
+  position: relative;
+  z-index: 1;
   display: grid;
   width: 100%;
 }
@@ -218,6 +225,21 @@ body {
   color: inherit;
 }
 
+@media (orientation: portrait) {
+  body,
+  .wrapper {
+    height: 100%;
+  }
+  .wrapper {
+    min-height: 0;
+  }
+  .main {
+    min-height: 0;
+  }
+  .slogan {
+    margin-top: auto;
+  }
+}
 @media (orientation: portrait) and (max-height: 520px) {
   .lead {
     display: none;
